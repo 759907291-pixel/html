@@ -290,7 +290,7 @@
 <!-- ================= HEADER ================= -->
 <header>
   <div class="wrap nav">
-    <a class="logo" href="#top" aria-label="纯享 CHUNXIANG">
+    <a class="logo" href="#top">
       <svg viewBox="0 0 32 32" width="30" height="30" fill="none" aria-hidden="true">
         <circle cx="16" cy="16" r="9.2" stroke="#b08d57" stroke-width="1.1" opacity=".7"/>
         <circle cx="16" cy="6.6" r="3.3" fill="#7a3324"/>
@@ -301,8 +301,8 @@
         <circle cx="7.9" cy="11.3" r="3.3" fill="#8a3b2a"/>
       </svg>
       <span>
-        <b>纯享</b>
-        <em>CHUNXIANG</em>
+        <b data-zh="纯享" data-en="CHUNXIANG">纯享</b>
+        <em data-zh="CHUNXIANG" data-en="SUZHOU">CHUNXIANG</em>
       </span>
     </a>
 
@@ -352,7 +352,7 @@
 <div class="stats">
   <div class="wrap stats-grid">
     <div class="stat">
-      <b>10<small style="font-size:16px;">年</small></b>
+      <b><span data-zh="10" data-en="10">10</span><small style="font-size:16px;" data-zh="年" data-en=" Years">年</small></b>
       <span data-zh="匠心传承" data-en="Years of Craft">匠心传承</span>
     </div>
     <div class="stat">
@@ -625,8 +625,8 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="brand">纯享 CHUNXIANG</div>
-        <div class="brand-en">SUZHOU CHUNXIANG</div>
+        <div class="brand" data-zh="纯享 CHUNXIANG" data-en="CHUNXIANG">纯享 CHUNXIANG</div>
+        <div class="brand-en" data-zh="SUZHOU CHUNXIANG" data-en="SUZHOU · CHINA">SUZHOU CHUNXIANG</div>
         <p class="slogan"
            data-zh="一串一世界，一念一清净。精选天然材质，苏州手工穿制。"
            data-en="One bracelet, one world. Natural materials, handcrafted in Suzhou.">
@@ -658,18 +658,21 @@
     </div>
 
     <div class="foot-line">
-      <div>
-        © 2025 苏州纯享智能科技有限公司 版权所有<br>
-        Suzhou Chuxiang Intelligent Technology Co., Ltd. All Rights Reserved.
+      <div data-zh="© 2025 苏州纯享智能科技有限公司 版权所有"
+           data-en="© 2025 Suzhou Chuxiang Intelligent Technology Co., Ltd. All Rights Reserved.">
+        © 2025 苏州纯享智能科技有限公司 版权所有
       </div>
-      <div>苏ICP备00000000号</div>
+      <div data-zh="苏ICP备00000000号"
+           data-en="ICP Filing No. 00000000">
+        苏ICP备00000000号
+      </div>
     </div>
   </div>
 </footer>
 
 <script>
 /* =========================================================
-   1. 手串 SVG 生成器（简洁风格）
+   1. 手串 SVG 生成器（简洁圆珠风格）
    ========================================================= */
 const PALETTES = {
   sandalwood:{light:'#c07052',base:'#7a3324',dark:'#38130b',bg:'#f8ece7'},
@@ -685,24 +688,23 @@ let __uid = 0;
 
 function braceletSVG(key, opt = {}) {
   const p      = PALETTES[key] || PALETTES.hero;
-  const R      = opt.R || 76;          // 珠串半径
-  const count  = opt.count || 14;      // 珠子数量
+  const R      = opt.R || 76;
+  const count  = opt.count || 14;
   const cx = 120, cy = 120;
   const id = 'b' + (__uid++);
   const step = (Math.PI * 2) / count;
-  const beadR = (2 * Math.PI * R / count) / 2 * 1.06; // 略微重叠，看起来更紧实
+  const beadR = (2 * Math.PI * R / count) / 2 * 1.06;
 
   let beads = '';
   for (let i = 0; i < count; i++) {
-    const a = i * step - Math.PI / 2;              // 从正上方开始
+    const a = i * step - Math.PI / 2;
     const x = cx + Math.cos(a) * R;
     const y = cy + Math.sin(a) * R;
-    const isGuru = (i === 0);                      // 顶部“佛头”珠
+    const isGuru = (i === 0);
     const r = isGuru ? beadR * 1.16 : beadR;
     const fill = isGuru ? `url(#${id}-gold)` : `url(#${id}-main)`;
 
     beads += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" fill="${fill}"/>`;
-    // 高光
     beads += `<circle cx="${(x - r * 0.34).toFixed(1)}" cy="${(y - r * 0.38).toFixed(1)}"
                 r="${(r * 0.30).toFixed(1)}" fill="#ffffff" opacity="${isGuru ? 0.55 : 0.38}"/>`;
   }
@@ -735,7 +737,6 @@ document.querySelectorAll('[data-beads]').forEach(el => {
 
   el.innerHTML = braceletSVG(key, { R: big ? 84 : 76, count: big ? 16 : 14 });
 
-  // 已有背景的（如 story-art）不覆盖
   if (!el.classList.contains('story-art')) {
     el.style.background = `radial-gradient(circle at 50% 38%, ${p.bg} 0%, #ffffff 78%)`;
     el.style.border = '1px solid #f0e8db';
@@ -759,7 +760,7 @@ function setLang(lang) {
     if (val !== undefined && val !== null) el.textContent = val;
   });
 
-  /* 价格切换：中文显示 ¥，英文显示 $ */
+  /* 价格切换：中文 ¥ / 英文 $ */
   document.querySelectorAll('[data-zh-price]').forEach(el => {
     const price = (lang === 'zh') ? el.dataset.zhPrice : el.dataset.enPrice;
     if (price) el.textContent = price;
