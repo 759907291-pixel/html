@@ -192,7 +192,7 @@
   /* ============ Story ============ */
   .story-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:70px;align-items:center;}
   .story-art{
-    border-radius:26px;padding:26px;
+    border-radius:26px;padding:36px;
     background:linear-gradient(150deg,#f8f2e8,#eef4ee);
     border:1px solid #ece2d3;
   }
@@ -669,228 +669,97 @@
 
 <script>
 /* =========================================================
-   1. 材质参数（用于生成接近实拍的手串渲染）
+   1. 手串 SVG 生成器（简洁风格）
    ========================================================= */
-const MAT = {
-  /* 小叶紫檀：油润木质，细密纵纹 */
-  sandalwood: {
-    bg:'#f7ebe5',
-    body:['#cf7f60','#8d3c27','#4a1a0e','#280a04'],
-    tex:{ freq:'0.42 0.014', oct:4, seed:11, opacity:0.62,
-          matrix:'0 0 0 0 0.24  0 0 0 0 0.08  0 0 0 0 0.03  0.9 0.45 0 0 -0.28' },
-    bounce:{ color:'#e8a070', opacity:0.38 },
-    spec:{ ox:-0.34, oy:-0.38, rx:0.33, ry:0.25, opacity:0.72, core:0.075 },
-    rim:{ color:'#eda87c', opacity:0.55 }
-  },
-
-  /* 和田玉：半透光、云雾感 */
-  jade: {
-    bg:'#eef4ee',
-    body:['#f6faf1','#cfdfc9','#93ab92','#6a806c'],
-    tex:{ freq:'0.008 0.008', oct:3, seed:5, opacity:0.5,
-          matrix:'0 0 0 0 0.86  0 0 0 0 0.92  0 0 0 0 0.84  0.7 0.3 0 0 -0.35' },
-    bounce:{ color:'#ffffff', opacity:0.55 },
-    spec:{ ox:-0.32, oy:-0.36, rx:0.36, ry:0.28, opacity:0.55, core:0.06 },
-    rim:{ color:'#ffffff', opacity:0.6 }
-  },
-
-  /* 紫水晶：晶体感，锐利高光 */
-  amethyst: {
-    bg:'#f2ecf9',
-    body:['#d3b8ef','#9a78c6','#5b438a','#352553'],
-    tex:{ freq:'0.06 0.42', oct:3, seed:19, opacity:0.45,
-          matrix:'0 0 0 0 0.36  0 0 0 0 0.22  0 0 0 0 0.48  0.8 0.4 0 0 -0.3' },
-    bounce:{ color:'#c9a4f0', opacity:0.4 },
-    spec:{ ox:-0.36, oy:-0.40, rx:0.26, ry:0.19, opacity:0.9, core:0.07 },
-    rim:{ color:'#d6b6f5', opacity:0.6 }
-  },
-
-  /* 星月菩提：哑光颗粒，密布星点 */
-  bodhi: {
-    bg:'#f9f3e7',
-    body:['#f4e4c0','#cbac74','#8b6c39','#5e4520'],
-    tex:{ freq:'0.32 0.32', oct:3, seed:31, opacity:0.5,
-          matrix:'0 0 0 0 0.34  0 0 0 0 0.24  0 0 0 0 0.10  0.85 0.4 0 0 -0.28' },
-    bounce:{ color:'#ffedc9', opacity:0.28 },
-    spec:{ ox:-0.32, oy:-0.36, rx:0.34, ry:0.26, opacity:0.42, core:0.055 },
-    rim:{ color:'#f0d8a8', opacity:0.42 }
-  },
-
-  /* 黑曜石：镜面反射，强高光 */
-  obsidian: {
-    bg:'#efeff3',
-    body:['#71707f','#35343f','#16151c','#060609'],
-    tex:{ freq:'0.03 0.03', oct:2, seed:7, opacity:0.28,
-          matrix:'0 0 0 0 0.20  0 0 0 0 0.20  0 0 0 0 0.26  0.7 0.3 0 0 -0.3' },
-    bounce:{ color:'#8a8aa0', opacity:0.32 },
-    spec:{ ox:-0.36, oy:-0.40, rx:0.20, ry:0.15, opacity:1, core:0.085 },
-    rim:{ color:'#a8a8c0', opacity:0.65 }
-  },
-
-  /* 南红玛瑙：胶质通透，条带纹理 */
-  agate: {
-    bg:'#fceceb',
-    body:['#e88d82','#bb4640','#721c19','#43100e'],
-    tex:{ freq:'0.012 0.26', oct:4, seed:23, opacity:0.5,
-          matrix:'0 0 0 0 0.36  0 0 0 0 0.10  0 0 0 0 0.06  0.9 0.4 0 0 -0.3' },
-    bounce:{ color:'#ff9c8a', opacity:0.42 },
-    spec:{ ox:-0.33, oy:-0.37, rx:0.32, ry:0.24, opacity:0.62, core:0.065 },
-    rim:{ color:'#f09a86', opacity:0.55 }
-  }
+const PALETTES = {
+  sandalwood:{light:'#c07052',base:'#7a3324',dark:'#38130b',bg:'#f8ece7'},
+  jade      :{light:'#f6faf4',base:'#c3d6c2',dark:'#7d9b80',bg:'#eef4ee'},
+  amethyst  :{light:'#ddcdf3',base:'#9a7bc4',dark:'#4d3873',bg:'#f2ecf9'},
+  bodhi     :{light:'#f8ecd4',base:'#d6b884',dark:'#8c703d',bg:'#f9f3e7'},
+  obsidian  :{light:'#767685',base:'#33323c',dark:'#0d0d13',bg:'#efeff3'},
+  agate     :{light:'#f4aca4',base:'#c8504f',dark:'#731f1e',bg:'#fceceb'},
+  hero      :{light:'#c07052',base:'#7a3324',dark:'#38130b',bg:'#f8ece7'}
 };
-MAT.hero = MAT.sandalwood;
 
-/* =========================================================
-   2. 手串 SVG 生成器（接近实拍质感）
-   ========================================================= */
 let __uid = 0;
-function rand(s){ const x = Math.sin(s * 12.9898) * 43758.5453; return x - Math.floor(x); }
-const f2 = n => (Math.round(n * 100) / 100).toString();
 
-function buildBracelet(key, opt = {}) {
-  const m     = MAT[key] || MAT.sandalwood;
-  const uid   = 'br' + (__uid++);
-  const R     = opt.R || 76;
-  const count = opt.count || 14;
+function braceletSVG(key, opt = {}) {
+  const p      = PALETTES[key] || PALETTES.hero;
+  const R      = opt.R || 76;          // 珠串半径
+  const count  = opt.count || 14;      // 珠子数量
   const cx = 120, cy = 120;
-  const step = Math.PI * 2 / count;
-  const beadR = (2 * Math.PI * R / count) / 2 * 1.06;
+  const id = 'b' + (__uid++);
+  const step = (Math.PI * 2) / count;
+  const beadR = (2 * Math.PI * R / count) / 2 * 1.06; // 略微重叠，看起来更紧实
 
-  /* --- 珠子几何 --- */
-  const beads = [];
+  let beads = '';
   for (let i = 0; i < count; i++) {
-    const a = i * step - Math.PI / 2;
-    let r = beadR * (1 + (rand(i * 7.3 + 3.7) - 0.5) * 0.07);
-    if (i === 0) r *= 1.14;                    // 顶部佛头珠略大
-    beads.push({
-      x: cx + Math.cos(a) * R,
-      y: cy + Math.sin(a) * R,
-      r: r
-    });
+    const a = i * step - Math.PI / 2;              // 从正上方开始
+    const x = cx + Math.cos(a) * R;
+    const y = cy + Math.sin(a) * R;
+    const isGuru = (i === 0);                      // 顶部“佛头”珠
+    const r = isGuru ? beadR * 1.16 : beadR;
+    const fill = isGuru ? `url(#${id}-gold)` : `url(#${id}-main)`;
+
+    beads += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" fill="${fill}"/>`;
+    // 高光
+    beads += `<circle cx="${(x - r * 0.34).toFixed(1)}" cy="${(y - r * 0.38).toFixed(1)}"
+                r="${(r * 0.30).toFixed(1)}" fill="#ffffff" opacity="${isGuru ? 0.55 : 0.38}"/>`;
   }
 
-  /* --- 各图层 --- */
-  const bodyLayer = beads.map(b =>
-    `<circle cx="${f2(b.x)}" cy="${f2(b.y)}" r="${f2(b.r)}" fill="url(#${uid}-body)"/>`
-  ).join('');
-
-  const bounceLayer = beads.map(b =>
-    `<circle cx="${f2(b.x)}" cy="${f2(b.y)}" r="${f2(b.r)}" fill="url(#${uid}-bounce)"/>`
-  ).join('');
-
-  const rimLayer = beads.map(b =>
-    `<circle cx="${f2(b.x)}" cy="${f2(b.y)}" r="${f2(b.r)}" fill="url(#${uid}-rim)"/>`
-  ).join('');
-
-  const specLayer = beads.map(b => {
-    const hx = b.x + b.r * m.spec.ox;
-    const hy = b.y + b.r * m.spec.oy;
-    return `<ellipse cx="${f2(hx)}" cy="${f2(hy)}" rx="${f2(b.r*m.spec.rx)}" ry="${f2(b.r*m.spec.ry)}"
-              fill="#ffffff" opacity="${m.spec.opacity}" filter="url(#${uid}-soft)"/>
-            <circle cx="${f2(hx - b.r*0.07)}" cy="${f2(hy - b.r*0.07)}" r="${f2(b.r*m.spec.core)}"
-              fill="#ffffff" opacity="0.95"/>`;
-  }).join('');
-
-  const maskLayer = beads.map(b =>
-    `<circle cx="${f2(b.x)}" cy="${f2(b.y)}" r="${f2(b.r)}" fill="#ffffff"/>`
-  ).join('');
-
-  /* --- SVG --- */
-  return `<svg viewBox="0 0 240 240" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="${uid}-body" cx="33%" cy="27%" r="80%">
-      <stop offset="0%"   stop-color="${m.body[0]}"/>
-      <stop offset="34%"  stop-color="${m.body[1]}"/>
-      <stop offset="76%"  stop-color="${m.body[2]}"/>
-      <stop offset="100%" stop-color="${m.body[3]}"/>
-    </radialGradient>
-
-    <radialGradient id="${uid}-bounce" cx="50%" cy="102%" r="58%">
-      <stop offset="0%"   stop-color="${m.bounce.color}" stop-opacity="${m.bounce.opacity}"/>
-      <stop offset="100%" stop-color="${m.bounce.color}" stop-opacity="0"/>
-    </radialGradient>
-
-    <radialGradient id="${uid}-rim" cx="30%" cy="25%" r="86%">
-      <stop offset="60%"  stop-color="${m.rim.color}" stop-opacity="0"/>
-      <stop offset="88%"  stop-color="${m.rim.color}" stop-opacity="${m.rim.opacity * 0.5}"/>
-      <stop offset="100%" stop-color="${m.rim.color}" stop-opacity="${m.rim.opacity}"/>
-    </radialGradient>
-
-    <filter id="${uid}-soft" x="-60%" y="-60%" width="220%" height="220%">
-      <feGaussianBlur stdDeviation="2.6"/>
-    </filter>
-
-    <filter id="${uid}-noise" x="-8%" y="-8%" width="116%" height="116%"
-            color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency="${m.tex.freq}"
-                    numOctaves="${m.tex.oct}" seed="${m.tex.seed}" result="n"/>
-      <feColorMatrix in="n" type="matrix" values="${m.tex.matrix}"/>
-    </filter>
-
-    <mask id="${uid}-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="240" height="240">
-      <rect width="240" height="240" fill="#000000"/>
-      ${maskLayer}
-    </mask>
-
-    <filter id="${uid}-blur" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="7"/>
-    </filter>
-  </defs>
-
-  <!-- 环状投影 -->
-  <circle cx="120" cy="128" r="${R}" fill="none"
-          stroke="#4a3620" stroke-width="${f2(beadR * 1.7)}"
-          opacity="0.16" filter="url(#${uid}-blur)"/>
-
-  <!-- 珠体 -->
-  ${bodyLayer}
-
-  <!-- 底部反光 -->
-  ${bounceLayer}
-
-  <!-- 材质纹理 -->
-  <rect width="240" height="240" filter="url(#${uid}-noise)"
-        mask="url(#${uid}-mask)" opacity="${m.tex.opacity}"/>
-
-  <!-- 边缘光 -->
-  ${rimLayer}
-
-  <!-- 镜面高光 -->
-  ${specLayer}
-</svg>`;
+  return `<svg viewBox="0 0 240 240" width="100%" height="100%" role="img" aria-label="${key} bracelet">
+    <defs>
+      <radialGradient id="${id}-main" cx="34%" cy="28%" r="80%">
+        <stop offset="0%"   stop-color="${p.light}"/>
+        <stop offset="48%"  stop-color="${p.base}"/>
+        <stop offset="100%" stop-color="${p.dark}"/>
+      </radialGradient>
+      <radialGradient id="${id}-gold" cx="34%" cy="28%" r="80%">
+        <stop offset="0%"   stop-color="#f7e4b8"/>
+        <stop offset="50%"  stop-color="#c9a25f"/>
+        <stop offset="100%" stop-color="#87672c"/>
+      </radialGradient>
+      <filter id="${id}-sh" x="-35%" y="-35%" width="170%" height="170%">
+        <feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#3a2a18" flood-opacity="0.20"/>
+      </filter>
+    </defs>
+    <g filter="url(#${id}-sh)">${beads}</g>
+  </svg>`;
 }
 
-/* --- 注入所有手串图 --- */
+/* 注入所有手串图 */
 document.querySelectorAll('[data-beads]').forEach(el => {
   const key = el.dataset.beads;
   const big = el.dataset.big === '1';
-  const m   = MAT[key] || MAT.sandalwood;
+  const p = PALETTES[key] || PALETTES.hero;
 
-  el.innerHTML = buildBracelet(key, { R: big ? 84 : 76, count: big ? 16 : 14 });
+  el.innerHTML = braceletSVG(key, { R: big ? 84 : 76, count: big ? 16 : 14 });
 
+  // 已有背景的（如 story-art）不覆盖
   if (!el.classList.contains('story-art')) {
-    el.style.background = `radial-gradient(ellipse at 50% 42%, ${m.bg} 0%, #fdfcfa 72%)`;
-    el.style.border = '1px solid #f1e9dc';
+    el.style.background = `radial-gradient(circle at 50% 38%, ${p.bg} 0%, #ffffff 78%)`;
+    el.style.border = '1px solid #f0e8db';
   } else {
-    el.style.background = `radial-gradient(ellipse at 50% 42%, ${m.bg} 0%, #ffffff 75%)`;
+    el.style.background = `linear-gradient(150deg, ${p.bg}, #ffffff)`;
     el.style.border = '1px solid #ece2d3';
-    el.style.padding = '26px';
+    el.style.padding = '30px';
     el.style.borderRadius = '26px';
   }
 });
 
 /* =========================================================
-   3. 中英双语切换（含价格货币切换）
+   2. 中英双语切换（含价格货币切换）
    ========================================================= */
 const langButtons = document.querySelectorAll('.lang-btn');
 
 function setLang(lang) {
+  /* 文字内容切换 */
   document.querySelectorAll('[data-zh]').forEach(el => {
     const val = el.dataset[lang];
     if (val !== undefined && val !== null) el.textContent = val;
   });
 
-  /* 价格切换：中文 ¥ / 英文 $ */
+  /* 价格切换：中文显示 ¥，英文显示 $ */
   document.querySelectorAll('[data-zh-price]').forEach(el => {
     const price = (lang === 'zh') ? el.dataset.zhPrice : el.dataset.enPrice;
     if (price) el.textContent = price;
@@ -910,12 +779,13 @@ langButtons.forEach(btn => {
   btn.addEventListener('click', () => setLang(btn.dataset.lang));
 });
 
+// 初始化语言（记忆上次选择）
 let savedLang = 'zh';
 try { savedLang = localStorage.getItem('cx-lang') || 'zh'; } catch (e) {}
 if (savedLang === 'en') setLang('en');
 
 /* =========================================================
-   4. 滚动渐显
+   3. 滚动渐显
    ========================================================= */
 const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -932,7 +802,7 @@ document.querySelectorAll('.reveal').forEach((el, i) => {
 });
 
 /* =========================================================
-   5. 加入购物车（示例交互）
+   4. 加入购物车（示例交互）
    ========================================================= */
 document.querySelectorAll('.btn-mini').forEach(btn => {
   btn.addEventListener('click', () => {
