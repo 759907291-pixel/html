@@ -3,157 +3,397 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>苏州纯享智能科技有限公司</title>
+    <title>苏州纯享智能科技有限公司 - 精品手串 | Premium Bracelets</title>
+    <meta name="description" content="苏州纯享智能科技有限公司，沉香、檀香、菩提、和田玉、玛瑙、水晶精品手串 | Suzhou Chunxiang Intelligent Technology Co., Ltd.">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft Yahei", sans-serif;
-        }
-        header {
-            background: #165DFF;
-            color: #fff;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 24px;
-            font-size: 16px;
-        }
-        .banner {
-            height: 400px;
-            background: #f0f4ff;
-            display:flex;
-            flex-direction: column;
-            justify-content:center;
-            align-items:center;
-            color:#165DFF;
-        }
-        .banner h1 {
-            font-size:42px;
-            margin-bottom:16px;
-        }
-        section {
-            padding: 60px 5%;
-        }
-        .section-title {
-            text-align:center;
-            font-size:28px;
-            margin-bottom:40px;
-            color:#222;
-        }
-        .about {
-            background: #fff;
-        }
-        .about-content {
-            max-width:1000px;
-            margin:0 auto;
-            line-height:1.8;
-            font-size:16px;
-            color:#444;
-        }
-        .business-wrap {
-            display:grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-            gap:24px;
-            max-width:1200px;
-            margin:0 auto;
-        }
-        .business-card {
-            background:#f7f8fa;
-            padding:30px;
-            border-radius:12px;
-        }
-        .business-card h3 {
-            margin-bottom:12px;
-            color:#165DFF;
-        }
-        .contact {
-            background:#222;
+        *{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei",sans-serif;}
+        :root{--main:#8B572A;--light:#F5F1ED;--dark:#333;--white:#fff;}
+        body{background:var(--light);color:var(--dark);line-height:1.7;}
+        .container{max-width:1200px;margin:0 auto;padding:0 15px;}
+
+        /* 导航栏 */
+        header{background:rgba(0,0,0,0.7);position:fixed;top:0;width:100%;z-index:999;transition:0.3s;}
+        .nav-wrap{display:flex;justify-content:space-between;align-items:center;padding:15px 0;}
+        .logo{color:var(--white);font-size:22px;font-weight:bold;text-decoration:none;}
+        .logo span{color:#d4af37;}
+        .nav-menu{display:flex;gap:30px;list-style:none;align-items:center;}
+        .nav-menu a{color:var(--white);text-decoration:none;font-size:16px;transition:0.3s;}
+        .nav-menu a:hover{color:#d4af37;}
+        .mobile-btn{display:none;color:#fff;font-size:28px;cursor:pointer;}
+        .lang-switch{
+            background:#d4af37;
             color:#fff;
+            border:none;
+            padding:6px 12px;
+            border-radius:4px;
+            cursor:pointer;
         }
-        .contact-info {
-            max-width:700px;
-            margin:0 auto;
-            line-height:2;
-        }
-        footer {
-            background:#111;
-            color:#aaa;
-            text-align:center;
-            padding:20px;
-            font-size:14px;
+
+        /* 首页横幅 */
+        .banner{height:100vh;background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('https://img0.baidu.com/it/u=3940501140,1302220302&fm=253&fmt=auto&app=138&f=JPEG?w=1920&h=800') center/cover no-repeat;display:flex;align-items:center;text-align:center;color:#fff;padding-top:70px;}
+        .banner-text h1{font-size:48px;margin-bottom:20px;}
+        .banner-text p{font-size:20px;margin-bottom:30px;max-width:700px;margin-left:auto;margin-right:auto;}
+        .btn{display:inline-block;background:var(--main);color:#fff;padding:14px 32px;border-radius:4px;text-decoration:none;transition:0.3s;border:none;cursor:pointer;font-size:16px;}
+        .btn:hover{background:#6d4220;}
+
+        /* 通用区块 */
+        section{padding:80px 0;}
+        .sec-title{text-align:center;margin-bottom:50px;}
+        .sec-title h2{font-size:32px;color:var(--main);margin-bottom:12px;}
+        .sec-title p{color:#666;max-width:700px;margin:0 auto;}
+
+        /* 产品区域 */
+        .product-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;}
+        .product-card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.08);transition:0.3s;}
+        .product-card:hover{transform:translateY(-8px);box-shadow:0 8px 20px rgba(0,0,0,0.12);}
+        .product-img{height:240px;background:#eee;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+        .product-img img{width:100%;height:100%;object-fit:cover;}
+        .product-info{padding:20px;}
+        .product-info h3{font-size:18px;margin-bottom:8px;color:var(--dark);}
+        .product-info .desc{color:#666;font-size:14px;margin-bottom:10px;}
+        .product-info .price{color:var(--main);font-size:18px;font-weight:bold;}
+
+        /* 关于我们 */
+        .about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+        .about-img{border-radius:8px;overflow:hidden;}
+        .about-img img{width:100%;}
+        .about-text h3{font-size:26px;color:var(--main);margin-bottom:20px;}
+        .about-text p{margin-bottom:15px;color:#555;}
+
+        /* 联系表单 */
+        .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+        .contact-info p{margin-bottom:14px;font-size:16px;}
+        .contact-info i{color:var(--main);width:26px;}
+        .form-item{margin-bottom:18px;}
+        .form-item input,.form-item textarea{width:100%;padding:14px;border:1px solid #ddd;border-radius:4px;font-size:16px;}
+        .form-item textarea{min-height:140px;resize:none;}
+        .success-tip{color:#28a745;display:none;text-align:center;margin-top:15px;}
+
+        /* 页脚 */
+        footer{background:#222;color:#aaa;padding:40px 0 20px;}
+        .footer-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;margin-bottom:30px;}
+        .footer-col h4{color:#fff;font-size:18px;margin-bottom:18px;}
+        .footer-col p{font-size:14px;line-height:1.8;}
+        .copyright{text-align:center;padding-top:20px;border-top:#333 solid 1px;font-size:14px;}
+        .footer-col a{color:#aaa;text-decoration:none;}
+
+        /* 多语言文本 默认英文隐藏 */
+        .en{display:none;}
+        .zh{display:block;}
+
+        /* 移动端适配 */
+        @media(max-width:768px){
+            .nav-menu{position:fixed;left:-100%;top:70px;flex-direction:column;background:#222;width:100%;height:calc(100vh - 70px);padding:30px;transition:0.3s;gap:20px;align-items:flex-start;}
+            .nav-menu.active{left:0;}
+            .mobile-btn{display:block;}
+            .banner-text h1{font-size:32px;}
+            .about-wrap,.contact-wrap{grid-template-columns:1fr;}
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">纯享智能</div>
-        <nav>
-            <a href="#home">首页</a>
-            <a href="#about">关于我们</a>
-            <a href="#business">业务范围</a>
-            <a href="#contact">联系我们</a>
-        </nav>
+    <!-- 导航 -->
+    <header id="navbar">
+        <div class="container nav-wrap">
+            <a href="#" class="logo">苏州纯享<span>智能科技</span></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home"><span class="zh">首页</span><span class="en">Home</span></a></li>
+                <li><a href="#product"><span class="zh">产品</span><span class="en">Products</span></a></li>
+                <li><a href="#about"><span class="zh">关于我们</span><span class="en">About Us</span></a></li>
+                <li><a href="#contact"><span class="zh">联系我们</span><span class="en">Contact</span></a></li>
+                <li><button class="lang-switch" id="langBtn">EN</button></li>
+            </ul>
+            <div class="mobile-btn" id="menuBtn"><i class="fas fa-bars"></i></div>
+        </div>
     </header>
 
-    <div class="banner" id="home">
-        <h1>苏州纯享智能科技有限公司</h1>
-        <p>专注智能系统研发 · 赋能数字化升级</p>
-    </div>
-
-    <section class="about" id="about">
-        <h2 class="section-title">关于我们</h2>
-        <div class="about-content">
-            <p>苏州纯享智能科技有限公司坐落于苏州，是一家专注于智能化软硬件方案设计、智能控制系统、物联网设备集成的科技企业。公司致力于为家庭、商业空间、办公场景提供稳定可靠的智能化整体解决方案。</p>
-            <br>
-            <p>公司坚持技术为本，聚焦智能影音、全屋智能、自动化控制等方向，从方案设计、产品供应到现场调试、售后运维，提供一站式服务，为客户打造舒适、便捷、智能的使用体验。</p>
+    <!-- Banner -->
+    <section class="banner" id="home">
+        <div class="container banner-text">
+            <h1>
+                <span class="zh">甄选天然精品手串</span>
+                <span class="en">Premium Natural Bracelets</span>
+            </h1>
+            <p>
+                <span class="zh">苏州纯享智能科技有限公司｜沉香·檀香·菩提·和田玉·玛瑙·水晶，匠心甄选每一件文玩好物</span>
+                <span class="en">Suzhou Chunxiang Intelligent Technology Co., Ltd. | Agarwood, Sandalwood, Bodhi, Hetian Jade, Agate & Crystal Handcrafted Bracelets</span>
+            </p>
+            <a href="#product" class="btn">
+                <span class="zh">浏览产品</span>
+                <span class="en">View Products</span>
+            </a>
         </div>
     </section>
 
-    <section id="business">
-        <h2 class="section-title">业务范围</h2>
-        <div class="business-wrap">
-            <div class="business-card">
-                <h3>全屋智能方案</h3>
-                <p>灯光、窗帘、空调、安防一体化智能控制系统设计与落地</p>
+    <!-- 产品展示 -->
+    <section id="product">
+        <div class="container">
+            <div class="sec-title">
+                <h2>
+                    <span class="zh">精品手串系列</span>
+                    <span class="en">Bracelet Collection</span>
+                </h2>
+                <p>
+                    <span class="zh">多种材质手串，手工打磨，天然原料，适合佩戴、收藏与礼品馈赠</span>
+                    <span class="en">Hand-polished natural beads. Ideal for daily wear, collection & gift.</span>
+                </p>
             </div>
-            <div class="business-card">
-                <h3>智能影音系统</h3>
-                <p>私人影院、背景音乐、专业音视频集成调试服务</p>
-            </div>
-            <div class="business-card">
-                <h3>物联网设备集成</h3>
-                <p>传感器、智能网关、设备联动开发与系统对接</p>
-            </div>
-            <div class="business-card">
-                <h3>技术运维服务</h3>
-                <p>系统巡检、故障排查、升级改造、长期技术支持</p>
+            <div class="product-list">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://img2.baidu.com/it/u=2827824428,3003104102&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800" alt="Agarwood Bracelet">
+                    </div>
+                    <div class="product-info">
+                        <h3><span class="zh">天然沉香手串</span><span class="en">Agarwood Bracelet</span></h3>
+                        <p class="desc">
+                            <span class="zh">老料沉香，油脂饱满，香气醇厚，收藏佩戴佳品</span>
+                            <span class="en">High oil content, rich aroma, great for collection & wear</span>
+                        </p>
+                        <p class="price">¥1680.00</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://img0.baidu.com/it/u=1666032212,264202122&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800" alt="Bodhi Bracelet">
+                    </div>
+                    <div class="product-info">
+                        <h3><span class="zh">星月菩提手串</span><span class="en">Star Moon Bodhi Bracelet</span></h3>
+                        <p class="desc">
+                            <span class="zh">高密顺白，精修孔道，适合盘玩包浆</span>
+                            <span class="en">High density, well polished, nice patina after hand rubbing</span>
+                        </p>
+                        <p class="price">¥299.00</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://img0.baidu.com/it/u=1243203444,3410424044&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800" alt="Hetian Jade Bracelet">
+                    </div>
+                    <div class="product-info">
+                        <h3><span class="zh">和田玉晴水手串</span><span class="en">Hetian Jade Bracelet</span></h3>
+                        <p class="desc">
+                            <span class="zh">青海料晴水，冰润通透，圆润珠型</span>
+                            <span class="en">Clear watery green jade, smooth round beads</span>
+                        </p>
+                        <p class="price">¥1250.00</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://img0.baidu.com/it/u=3081341032,1624114402&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800" alt="South Red Agate Bracelet">
+                    </div>
+                    <div class="product-info">
+                        <h3><span class="zh">南红玛瑙手串</span><span class="en">South Red Agate Bracelet</span></h3>
+                        <p class="desc">
+                            <span class="zh">四川凉山料，色泽红艳，满肉质感</span>
+                            <span class="en">Liangshan origin, vivid red color, full texture</span>
+                        </p>
+                        <p class="price">¥860.00</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://img0.baidu.com/it/u=2131220284,1414241240&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800" alt="Sandalwood Bracelet">
+                    </div>
+                    <div class="product-info">
+                        <h3><span class="zh">老山檀香手串</span><span class="en">Old Sandalwood Bracelet</span></h3>
+                        <p class="desc">
+                            <span class="zh">印度老山檀，奶香醇厚，纹理细腻</span>
+                            <span class="en">Indian old sandalwood, creamy fragrance, fine grain</span>
+                        </p>
+                        <p class="price">¥980.00</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://img0.baidu.com/it/u=2723004022,3210010204&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=800" alt="Amethyst Bracelet">
+                    </div>
+                    <div class="product-info">
+                        <h3><span class="zh">天然紫水晶手串</span><span class="en">Amethyst Bracelet</span></h3>
+                        <p class="desc">
+                            <span class="zh">巴西紫晶，晶体通透，简约百搭</span>
+                            <span class="en">Brazil amethyst, clear crystal, simple & versatile</span>
+                        </p>
+                        <p class="price">¥199.00</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="contact" id="contact">
-        <h2 class="section-title">联系我们</h2>
-        <div class="contact-info">
-            <p>公司名称：苏州纯享智能科技有限公司</p>
-            <p>地址：江苏省苏州市</p>
-            <p>电话：请填写联系电话</p>
-            <p>邮箱：请填写企业邮箱</p>
+    <!-- 关于我们 -->
+    <section id="about" style="background:#fff;">
+        <div class="container">
+            <div class="sec-title">
+                <h2>
+                    <span class="zh">关于我们</span>
+                    <span class="en">About Us</span>
+                </h2>
+                <p>
+                    <span class="zh">苏州纯享智能科技有限公司，立足苏州，甄选全球天然珠材，专注精品手串供应链</span>
+                    <span class="en">Suzhou Chunxiang Intelligent Technology Co., Ltd. Sourcing natural beads globally, professional bracelet supplier.</span>
+                </p>
+            </div>
+            <div class="about-wrap">
+                <div class="about-img">
+                    <img src="https://img0.baidu.com/it/u=3024441040,2402001144&fm=253&fmt=auto&app=138&f=JPEG?w=1000&h=600" alt="Company">
+                </div>
+                <div class="about-text">
+                    <h3>苏州纯享智能科技有限公司<br><span style="font-size:18px">Suzhou Chunxiang Intelligent Technology Co., Ltd.</span></h3>
+                    <p>
+                        <span class="zh">公司坐落于苏州，依托本地工艺资源，主营各类天然手串：沉香、檀香、菩提、和田玉、玛瑙、水晶、木质文玩等。</span>
+                        <span class="en">Located in Suzhou, we supply natural bracelets including agarwood, sandalwood, bodhi, hetian jade, agate, crystal and wooden crafts.</span>
+                    </p>
+                    <p>
+                        <span class="zh">我们坚持严选原料，手工打磨，兼顾线上零售、批发、礼品定制。支持一件代发、企业礼品定制，为客户提供稳定优质的手串产品。</span>
+                        <span class="en">Strict raw material selection & hand polishing. We provide retail, wholesale & custom corporate gifts, dropshipping available.</span>
+                    </p>
+                    <p>
+                        <span class="zh">秉承“纯于本心，享于好物”理念，每一串都经过筛选质检，拒绝劣质仿品。</span>
+                        <span class="en">We adhere to "Pure Heart, Enjoy Fine Goods". All items inspected, no poor counterfeits.</span>
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- 联系我们 -->
+    <section id="contact">
+        <div class="container">
+            <div class="sec-title">
+                <h2>
+                    <span class="zh">联系我们</span>
+                    <span class="en">Contact Us</span>
+                </h2>
+                <p>
+                    <span class="zh">欢迎咨询产品、批发、礼品定制合作</span>
+                    <span class="en">Welcome for product inquiry, wholesale & custom gift cooperation</span>
+                </p>
+            </div>
+            <div class="contact-wrap">
+                <div class="contact-info">
+                    <p><i class="fas fa-building"></i>
+                        <span class="zh">公司：苏州纯享智能科技有限公司</span>
+                        <span class="en">Company: Suzhou Chunxiang Intelligent Technology Co., Ltd.</span>
+                    </p>
+                    <p><i class="fas fa-map-marker-alt"></i>
+                        <span class="zh">地址：江苏省苏州市</span>
+                        <span class="en">Address: Suzhou City, Jiangsu Province, China</span>
+                    </p>
+                    <p><i class="fas fa-phone"></i>
+                        <span class="zh">电话：138-0000-0000</span>
+                        <span class="en">Tel: +86 138-0000-0000</span>
+                    </p>
+                    <p><i class="fas fa-envelope"></i>邮箱：contact@chunxiang-tech.com</p>
+                    <p><i class="fas fa-weixin"></i>微信：chunxiang2026</p>
+                </div>
+                <!-- 表单核心部分，替换邮箱即可生效 -->
+                <form action="https://formsubmit.co/contact@chunxiang-tech.com" method="POST">
+                    <!-- 成功跳转页面，提交后提示 -->
+                    <input type="hidden" name="_subject" value="手串独立站新客户留言">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+
+                    <div class="form-item">
+                        <input type="text" name="name" required placeholder="Your Name / 您的姓名">
+                    </div>
+                    <div class="form-item">
+                        <input type="tel" name="phone" required placeholder="Phone / 联系电话">
+                    </div>
+                    <div class="form-item">
+                        <textarea name="message" required placeholder="Message (Inquiry / Wholesale / Custom Order) 留言内容（产品咨询/批发合作/定制）"></textarea>
+                    </div>
+                    <button type="submit" class="btn">
+                        <span class="zh">提交留言</span>
+                        <span class="en">Submit</span>
+                    </button>
+                    <div class="success-tip">
+                        <span class="zh">提交成功，我们会尽快联系您！</span>
+                        <span class="en">Submitted successfully, we will contact you soon!</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
     <footer>
-        © 2026 苏州纯享智能科技有限公司 版权所有
+        <div class="container footer-wrap">
+            <div class="footer-col">
+                <h4>苏州纯享智能科技有限公司</h4>
+                <p>
+                    <span class="zh">专注天然精品手串，零售、批发、企业礼品定制服务</span>
+                    <span class="en">Premium natural bracelets, retail, wholesale & custom corporate gifts</span>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4><span class="zh">产品分类</span><span class="en">Products</span></h4>
+                <p>
+                    <span class="zh">沉香手串｜檀香手串<br>菩提手串｜和田玉手串<br>玛瑙南红｜水晶宝石</span>
+                    <span class="en">Agarwood｜Sandalwood<br>Bodhi｜Hetian Jade<br>Agate｜Crystal</span>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4><span class="zh">快速链接</span><span class="en">Quick Links</span></h4>
+                <p>
+                    <a href="#home"><span class="zh">首页</span><span class="en">主页</span></a><br>
+                    <a href="#product"><span class="zh">产品</span><span class="en">Products</span></a><br>
+                    <a href="#about"><span class="zh">关于我们</span><span class="en">About Us</span></a><br>
+                    <a href="#contact"><span class="zh">联系我们</span><span class="en">Contact</span></a>
+                </p>
+            </div>
+        </div>
+        <div class="container copyright">
+            © 2026 Suzhou Chunxiang Intelligent Technology Co., Ltd. <span class="zh">版权所有</span><span class="en">All Rights Reserved</span>
+        </div>
     </footer>
+
+    <script>
+        // 语言切换
+        let langCN = true;
+        const langBtn = document.getElementById("langBtn");
+        const zhTexts = document.querySelectorAll(".zh");
+        const enTexts = document.querySelectorAll(".en");
+
+        langBtn.addEventListener("click", function(){
+            langCN = !langCN;
+            if(langCN){
+                zhTexts.forEach(item=>item.style.display="block");
+                enTexts.forEach(item=>item.style.display="none");
+                document.documentElement.lang="zh-CN";
+                langBtn.innerText = "EN";
+            }else{
+                zhTexts.forEach(item=>item.style.display="none");
+                enTexts.forEach(item=>item.style.display="block");
+                document.documentElement.lang="en";
+                langBtn.innerText = "中文";
+            }
+        })
+
+        // 移动端菜单切换
+        const menuBtn = document.getElementById('menuBtn');
+        const navMenu = document.getElementById('navMenu');
+        menuBtn.addEventListener('click',()=>{
+            navMenu.classList.toggle('active');
+        })
+        // 滚动导航变色
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll',()=>{
+            if(window.scrollY>50){
+                navbar.style.background="rgba(0,0,0,0.9)";
+            }else{
+                navbar.style.background="rgba(0,0,0,0.7)";
+            }
+        })
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+            anchor.addEventListener('click',function(e){
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+                navMenu.classList.remove('active');
+            })
+        })
+    </script>
 </body>
 </html>
