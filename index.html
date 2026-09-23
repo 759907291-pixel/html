@@ -302,7 +302,7 @@
       </svg>
       <span>
         <b data-zh="纯享" data-en="CHUNXIANG">纯享</b>
-        <em data-zh="CHUNXIANG" data-en="SUZHOU">CHUNXIANG</em>
+        <em data-zh="CHUNXIANG" data-en="SUZHOU · CHINA">CHUNXIANG</em>
       </span>
     </a>
 
@@ -334,7 +334,8 @@
          data-en="Natural materials, handcrafted in Suzhou. Oriental aesthetics, strung into your everyday.">
         精选天然材质，于苏州手工穿制。以东方美学，串起腕间的温度与日常。
       </p>
-      <p class="hero-en">Selected stones · Hand-knotted · One of a kind</p>
+      <p class="hero-en" data-zh="天然选石 · 手工穿线 · 一物一版"
+         data-en="Selected stones · Hand-knotted · One of a kind">天然选石 · 手工穿线 · 一物一版</p>
 
       <div class="hero-actions">
         <a class="btn" href="#products" data-zh="探索臻品系列" data-en="Explore Collection">探索臻品系列</a>
@@ -352,7 +353,7 @@
 <div class="stats">
   <div class="wrap stats-grid">
     <div class="stat">
-      <b><span data-zh="10" data-en="10">10</span><small style="font-size:16px;" data-zh="年" data-en=" Years">年</small></b>
+      <b>10<small style="font-size:16px;" data-zh="年" data-en=" yrs">年</small></b>
       <span data-zh="匠心传承" data-en="Years of Craft">匠心传承</span>
     </div>
     <div class="stat">
@@ -754,42 +755,58 @@ document.querySelectorAll('[data-beads]').forEach(el => {
 const langButtons = document.querySelectorAll('.lang-btn');
 
 function setLang(lang) {
-  /* 文字内容切换 */
-  document.querySelectorAll('[data-zh]').forEach(el => {
-    const val = el.dataset[lang];
-    if (val !== undefined && val !== null) el.textContent = val;
+  /* 2.1 文字内容切换：遍历所有带 data-zh 属性的元素 */
+  document.querySelectorAll('[data-zh]').forEach(function(el){
+    var text = (lang === 'zh')
+      ? el.getAttribute('data-zh')
+      : el.getAttribute('data-en');
+    if (text !== null && text !== undefined && text !== '') {
+      el.textContent = text;
+    }
   });
 
-  /* 价格切换：中文 ¥ / 英文 $ */
-  document.querySelectorAll('[data-zh-price]').forEach(el => {
-    const price = (lang === 'zh') ? el.dataset.zhPrice : el.dataset.enPrice;
+  /* 2.2 价格切换：中文 ¥ / 英文 $ */
+  document.querySelectorAll('[data-zh-price]').forEach(function(el){
+    var price = (lang === 'zh')
+      ? el.getAttribute('data-zh-price')
+      : el.getAttribute('data-en-price');
     if (price) el.textContent = price;
   });
 
-  langButtons.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  /* 2.3 语言按钮激活态 */
+  langButtons.forEach(function(b){
+    b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+  });
 
+  /* 2.4 更新 html lang 属性与页面标题 */
   document.documentElement.lang = (lang === 'zh') ? 'zh-CN' : 'en';
   document.title = (lang === 'zh')
     ? '纯享手串 · 一串一世界 | Chunxiang Bracelets'
     : 'Chunxiang Bracelets · One Bracelet, One World';
 
+  /* 2.5 记住用户选择 */
   try { localStorage.setItem('cx-lang', lang); } catch (e) {}
 }
 
-langButtons.forEach(btn => {
-  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+/* 绑定语言按钮点击 */
+langButtons.forEach(function(btn){
+  btn.addEventListener('click', function(){
+    setLang(btn.getAttribute('data-lang'));
+  });
 });
 
-// 初始化语言（记忆上次选择）
-let savedLang = 'zh';
-try { savedLang = localStorage.getItem('cx-lang') || 'zh'; } catch (e) {}
-if (savedLang === 'en') setLang('en');
+/* 初始化语言：读取本地存储，如果上次是英文则直接切到英文 */
+(function initLang(){
+  var saved = 'zh';
+  try { saved = localStorage.getItem('cx-lang') || 'zh'; } catch (e) {}
+  if (saved === 'en') setLang('en');
+})();
 
 /* =========================================================
    3. 滚动渐显
    ========================================================= */
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+const io = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
     if (entry.isIntersecting) {
       entry.target.classList.add('in');
       io.unobserve(entry.target);
@@ -797,7 +814,7 @@ const io = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.reveal').forEach((el, i) => {
+document.querySelectorAll('.reveal').forEach(function(el, i){
   el.style.transitionDelay = (i % 3) * 0.08 + 's';
   io.observe(el);
 });
@@ -805,15 +822,15 @@ document.querySelectorAll('.reveal').forEach((el, i) => {
 /* =========================================================
    4. 加入购物车（示例交互）
    ========================================================= */
-document.querySelectorAll('.btn-mini').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const isEn = document.documentElement.lang === 'en';
-    const original = btn.textContent;
+document.querySelectorAll('.btn-mini').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var isEn = document.documentElement.lang === 'en';
+    var original = btn.textContent;
     btn.textContent = isEn ? '✓ Added' : '✓ 已加入';
     btn.style.background = '#1c1a17';
     btn.style.color = '#fff';
     btn.style.borderColor = '#1c1a17';
-    setTimeout(() => {
+    setTimeout(function(){
       btn.textContent = original;
       btn.style.background = '';
       btn.style.color = '';
