@@ -1,403 +1,811 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>苏州纯享智能科技有限公司 - 精品手串 | Premium Bracelets</title>
-    <meta name="description" content="苏州纯享智能科技有限公司，沉香、檀香、菩提、和田玉、玛瑙、水晶精品手串">
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei",sans-serif;}
-        :root{--main:#8B572A;--light:#F5F1ED;--dark:#333;--white:#fff;}
-        body{background:var(--light);color:var(--dark);line-height:1.7;}
-        .container{max-width:1200px;margin:0 auto;padding:0 15px;}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>纯享手串 · 一串一世界 | Chunxiang Bracelets</title>
+<meta name="description" content="苏州纯享智能科技有限公司 · 精选天然材质手串，手工穿制，一物一证。Suzhou Chuxiang Intelligent Technology Co., Ltd.">
+<style>
+  :root{
+    --ink:#1c1a17;
+    --ink2:#4a443c;
+    --muted:#8a8175;
+    --gold:#b08d57;
+    --gold-l:#d9bd8b;
+    --bg:#fbf8f3;
+    --line:#ece4d8;
+    --white:#fff;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.serif{
+    font-family:"Songti SC","STSong","Noto Serif SC",Georgia,"Times New Roman",serif;
+    font-weight:600;
+    letter-spacing:.02em;
+    line-height:1.3;
+    margin:0;
+  }
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
 
-        /* 导航栏 */
-        header{background:rgba(0,0,0,0.7);position:fixed;top:0;width:100%;z-index:999;transition:0.3s;}
-        .nav-wrap{display:flex;justify-content:space-between;align-items:center;padding:15px 0;}
-        .logo{color:var(--white);font-size:22px;font-weight:bold;text-decoration:none;}
-        .logo span{color:#d4af37;}
-        .nav-menu{display:flex;gap:30px;list-style:none;align-items:center;}
-        .nav-menu a{color:var(--white);text-decoration:none;font-size:16px;transition:0.3s;}
-        .nav-menu a:hover{color:#d4af37;}
-        .mobile-btn{display:none;color:#fff;font-size:28px;cursor:pointer;}
-        .lang-switch{
-            background:#d4af37;
-            color:#fff;
-            border:none;
-            padding:6px 12px;
-            border-radius:4px;
-            cursor:pointer;
-        }
+  /* ============ Header ============ */
+  header{
+    position:sticky;top:0;z-index:60;
+    background:rgba(251,248,243,.86);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px;}
+  .logo{display:flex;align-items:center;gap:11px;flex-shrink:0;}
+  .logo b{font-size:19px;letter-spacing:.14em;font-weight:600;}
+  .logo em{
+    font-style:normal;font-size:11px;letter-spacing:.28em;color:var(--muted);
+    display:block;margin-top:-4px;
+  }
+  .menu{display:flex;gap:34px;font-size:14.5px;color:var(--ink2);}
+  .menu a{position:relative;padding:4px 0;transition:color .25s;}
+  .menu a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--gold);transition:width .3s;
+  }
+  .menu a:hover{color:var(--gold);}
+  .menu a:hover::after{width:100%;}
+  .lang{display:flex;border:1px solid #ded3c1;border-radius:999px;overflow:hidden;flex-shrink:0;}
+  .lang button{
+    border:0;background:transparent;padding:6px 15px;font-size:12.5px;
+    letter-spacing:.06em;color:var(--muted);cursor:pointer;
+    font-family:inherit;transition:.25s;
+  }
+  .lang button.active{background:var(--ink);color:#fff;}
 
-        /* 首页横幅 */
-        .banner{height:100vh;background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('https://picsum.photos/id/177/1920/1080') center/cover no-repeat;display:flex;align-items:center;text-align:center;color:#fff;padding-top:70px;}
-        .banner-text h1{font-size:48px;margin-bottom:20px;}
-        .banner-text p{font-size:20px;margin-bottom:30px;max-width:700px;margin-left:auto;margin-right:auto;}
-        .btn{display:inline-block;background:var(--main);color:#fff;padding:14px 32px;border-radius:4px;text-decoration:none;transition:0.3s;border:none;cursor:pointer;font-size:16px;}
-        .btn:hover{background:#6d4220;}
+  /* ============ Hero ============ */
+  .hero{position:relative;padding:78px 0 92px;overflow:hidden;}
+  .hero::before{
+    content:"";position:absolute;top:-300px;right:-200px;width:760px;height:760px;
+    border-radius:50%;background:radial-gradient(circle,#f4e8d5 0%,rgba(244,232,213,0) 66%);
+    pointer-events:none;
+  }
+  .hero::after{
+    content:"";position:absolute;bottom:-260px;left:-200px;width:600px;height:600px;
+    border-radius:50%;background:radial-gradient(circle,#eef1e8 0%,rgba(238,241,232,0) 68%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative;z-index:1;
+    display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:12.5px;letter-spacing:.26em;color:var(--gold);
+    text-transform:uppercase;margin-bottom:22px;
+  }
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);}
+  h1{font-size:clamp(38px,5.6vw,64px);letter-spacing:.04em;}
+  h1 .accent{color:var(--gold);}
+  .hero-sub{
+    margin-top:22px;font-size:16.5px;color:var(--ink2);max-width:480px;
+  }
+  .hero-en{
+    margin-top:12px;font-size:13px;letter-spacing:.06em;color:var(--muted);
+    font-family:Georgia,serif;font-style:italic;
+  }
+  .hero-actions{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:14px 30px;border-radius:999px;font-size:14.5px;letter-spacing:.06em;
+    border:1px solid var(--ink);background:var(--ink);color:#fff;
+    cursor:pointer;transition:.3s;font-family:inherit;
+  }
+  .btn:hover{background:#000;transform:translateY(-2px);box-shadow:0 14px 28px -14px rgba(0,0,0,.5);}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:#d5c9b6;}
+  .btn.ghost:hover{background:#fff;border-color:var(--gold);color:var(--gold);box-shadow:none;}
+  .btn.light{background:#fff;color:var(--ink);border-color:#fff;}
+  .btn.light:hover{background:var(--gold-l);border-color:var(--gold-l);}
 
-        /* 通用区块 */
-        section{padding:80px 0;}
-        .sec-title{text-align:center;margin-bottom:50px;}
-        .sec-title h2{font-size:32px;color:var(--main);margin-bottom:12px;}
-        .sec-title p{color:#666;max-width:700px;margin:0 auto;}
+  .hero-art{display:flex;align-items:center;justify-content:center;}
+  .hero-art .art-box{width:100%;max-width:420px;}
+  .hero-art svg{animation:float 7s ease-in-out infinite;}
+  @keyframes float{
+    0%,100%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(-16px) rotate(3deg);}
+  }
 
-        /* 产品区域 */
-        .product-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;}
-        .product-card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.08);transition:0.3s;}
-        .product-card:hover{transform:translateY(-8px);box-shadow:0 8px 20px rgba(0,0,0,0.12);}
-        .product-img{height:240px;background:#eee;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-        .product-img img{width:100%;height:100%;object-fit:cover;}
-        .product-info{padding:20px;}
-        .product-info h3{font-size:18px;margin-bottom:8px;color:var(--dark);}
-        .product-info .desc{color:#666;font-size:14px;margin-bottom:10px;}
-        .product-info .price{color:var(--main);font-size:18px;font-weight:bold;}
+  /* ============ Stats ============ */
+  .stats{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:rgba(255,255,255,.55);
+  }
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);}
+  .stat{padding:34px 10px;text-align:center;border-right:1px solid var(--line);}
+  .stat:last-child{border-right:0;}
+  .stat b{
+    display:block;font-size:32px;color:var(--gold);
+    font-family:Georgia,serif;font-weight:600;letter-spacing:.02em;
+  }
+  .stat span{font-size:13px;color:var(--muted);letter-spacing:.1em;}
 
-        /* 关于我们 */
-        .about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
-        .about-img{border-radius:8px;overflow:hidden;height:400px;}
-        .about-img img{width:100%;height:100%;object-fit:cover;}
-        .about-text h3{font-size:26px;color:var(--main);margin-bottom:20px;}
-        .about-text p{margin-bottom:15px;color:#555;}
+  /* ============ Section ============ */
+  section{padding:88px 0;}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 56px;}
+  .sec-head .kicker{
+    font-size:12px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;
+  }
+  .sec-head h2{font-size:clamp(28px,3.6vw,40px);margin-top:14px;}
+  .sec-head p{margin-top:16px;color:var(--muted);font-size:15px;}
 
-        /* 联系表单 */
-        .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
-        .contact-info p{margin-bottom:14px;font-size:16px;}
-        .contact-info i{color:var(--main);width:26px;}
-        .form-item{margin-bottom:18px;}
-        .form-item input,.form-item textarea{width:100%;padding:14px;border:1px solid #ddd;border-radius:4px;font-size:16px;}
-        .form-item textarea{min-height:140px;resize:none;}
-        .success-tip{color:#28a745;display:none;text-align:center;margin-top:15px;}
+  /* ============ Products ============ */
+  .products{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .card{
+    background:#fff;border:1px solid #efe7db;border-radius:22px;padding:20px;
+    display:flex;flex-direction:column;transition:transform .35s,box-shadow .35s,border-color .35s;
+  }
+  .card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 30px 56px -30px rgba(70,45,20,.45);
+    border-color:#e3d6c1;
+  }
+  .card-art{
+    aspect-ratio:1/1;border-radius:16px;display:flex;align-items:center;justify-content:center;
+    padding:6px;overflow:hidden;
+  }
+  .card-art svg{width:100%;height:100%;transition:transform .5s;}
+  .card:hover .card-art svg{transform:scale(1.06) rotate(-4deg);}
+  .card h3{font-size:18px;margin:20px 0 0;}
+  .card .desc{font-size:13.5px;color:var(--muted);margin-top:10px;flex:1;line-height:1.7;}
+  .card-foot{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-top:20px;padding-top:16px;border-top:1px dashed #ece2d4;
+  }
+  .price{font-family:Georgia,serif;font-size:19px;color:var(--ink);letter-spacing:.02em;}
+  .btn-mini{
+    padding:9px 18px;border-radius:999px;font-size:12.5px;letter-spacing:.06em;
+    border:1px solid #ddd1bd;background:transparent;color:var(--ink2);
+    cursor:pointer;transition:.28s;font-family:inherit;
+  }
+  .btn-mini:hover{background:var(--ink);border-color:var(--ink);color:#fff;}
 
-        /* 页脚 */
-        footer{background:#222;color:#aaa;padding:40px 0 20px;}
-        .footer-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;margin-bottom:30px;}
-        .footer-col h4{color:#fff;font-size:18px;margin-bottom:18px;}
-        .footer-col p{font-size:14px;line-height:1.8;}
-        .copyright{text-align:center;padding-top:20px;border-top:#333 solid 1px;font-size:14px;}
-        .footer-col a{color:#aaa;text-decoration:none;}
+  /* ============ Features ============ */
+  .craft{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .features{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;}
+  .feature{text-align:center;padding:8px;}
+  .feature .ico{
+    width:62px;height:62px;margin:0 auto 20px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(140deg,#fdf7ec,#f2e6d3);border:1px solid #eadfcb;
+  }
+  .feature .ico svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:1.5;
+    stroke-linecap:round;stroke-linejoin:round;}
+  .feature h4{font-size:16.5px;}
+  .feature p{font-size:13.5px;color:var(--muted);margin-top:10px;}
 
-        /* 多语言文本 默认英文隐藏 */
-        .en{display:none;}
-        .zh{display:block;}
+  /* ============ Story ============ */
+  .story-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:70px;align-items:center;}
+  .story-art{
+    border-radius:26px;padding:36px;
+    background:linear-gradient(150deg,#f8f2e8,#eef4ee);
+    border:1px solid #ece2d3;
+  }
+  .story-text h2{font-size:clamp(28px,3.4vw,38px);}
+  .story-text .lead{
+    margin-top:24px;font-size:15.5px;color:var(--ink2);
+  }
+  .story-text .lead + .lead{margin-top:16px;}
+  .story-list{margin-top:30px;display:grid;gap:14px;}
+  .story-list li{list-style:none;display:flex;gap:12px;font-size:14.5px;color:var(--ink2);}
+  .story-list li::before{
+    content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);
+    margin-top:11px;flex-shrink:0;
+  }
 
-        /* 移动端适配 */
-        @media(max-width:768px){
-            .nav-menu{position:fixed;left:-100%;top:70px;flex-direction:column;background:#222;width:100%;height:calc(100vh - 70px);padding:30px;transition:0.3s;gap:20px;align-items:flex-start;}
-            .nav-menu.active{left:0;}
-            .mobile-btn{display:block;}
-            .banner-text h1{font-size:32px;}
-            .about-wrap,.contact-wrap{grid-template-columns:1fr;}
-        }
-    </style>
+  /* ============ Reviews ============ */
+  .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .review{
+    background:#fff;border:1px solid #efe7db;border-radius:20px;padding:30px 28px;
+    display:flex;flex-direction:column;
+  }
+  .stars{color:var(--gold);letter-spacing:4px;font-size:14px;}
+  .review p{font-size:14.5px;color:var(--ink2);margin-top:16px;flex:1;}
+  .review .who{
+    margin-top:22px;padding-top:16px;border-top:1px solid #f1eae0;
+    font-size:13px;color:var(--muted);letter-spacing:.04em;
+  }
+
+  /* ============ CTA ============ */
+  .cta-sec{padding:0 0 88px;}
+  .cta{
+    background:linear-gradient(135deg,#231f1a,#3b3126 60%,#4a3c2a);
+    border-radius:30px;padding:74px 40px;text-align:center;color:#fff;
+    position:relative;overflow:hidden;
+  }
+  .cta::before{
+    content:"";position:absolute;top:-160px;left:50%;transform:translateX(-50%);
+    width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,162,95,.32),transparent 68%);
+  }
+  .cta h2{position:relative;font-size:clamp(26px,3.4vw,38px);color:#fff;}
+  .cta p{position:relative;margin-top:16px;color:rgba(255,255,255,.72);font-size:15px;}
+  .cta .btn{position:relative;margin-top:34px;}
+
+  /* ============ Footer ============ */
+  footer{background:#181512;color:rgba(255,255,255,.66);padding:70px 0 30px;font-size:14px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;}
+  footer h4{color:#fff;font-size:15.5px;margin-bottom:20px;letter-spacing:.06em;}
+  footer .brand{color:#fff;font-size:19px;letter-spacing:.14em;font-family:"Songti SC",Georgia,serif;}
+  footer .brand-en{
+    font-size:11px;letter-spacing:.26em;color:rgba(255,255,255,.4);margin-top:4px;
+  }
+  footer .slogan{margin-top:20px;font-size:13.5px;line-height:1.9;color:rgba(255,255,255,.5);}
+  footer ul{list-style:none;padding:0;margin:0;display:grid;gap:12px;}
+  footer li a{transition:color .25s;}
+  footer li a:hover{color:var(--gold-l);}
+  .foot-line{
+    margin-top:52px;padding-top:26px;border-top:1px solid rgba(255,255,255,.1);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-size:12.5px;color:rgba(255,255,255,.4);line-height:1.9;
+  }
+
+  /* ============ Reveal ============ */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1);}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ============ Responsive ============ */
+  @media (max-width:980px){
+    .menu{display:none;}
+    .hero{padding:54px 0 68px;}
+    .hero-grid{grid-template-columns:1fr;gap:40px;}
+    .hero-art .art-box{max-width:320px;margin:0 auto;}
+    .hero-sub{max-width:none;}
+    .products{grid-template-columns:repeat(2,1fr);}
+    .features{grid-template-columns:repeat(2,1fr);gap:36px 24px;}
+    .story-grid{grid-template-columns:1fr;gap:44px;}
+    .reviews{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;gap:36px;}
+    section{padding:66px 0;}
+    .cta{border-radius:22px;padding:56px 24px;}
+  }
+  @media (max-width:600px){
+    .products{grid-template-columns:1fr;}
+    .features{grid-template-columns:1fr;}
+    .stat b{font-size:26px;}
+    .stat span{font-size:12px;}
+    .wrap{padding:0 18px;}
+    .nav{height:66px;}
+    .logo b{font-size:16px;}
+  }
+</style>
 </head>
-<body>
-    <!-- 导航 -->
-    <header id="navbar">
-        <div class="container nav-wrap">
-            <a href="#" class="logo">苏州纯享<span>智能科技</span></a>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home"><span class="zh">首页</span><span class="en">Home</span></a></li>
-                <li><a href="#product"><span class="zh">产品</span><span class="en">Products</span></a></li>
-                <li><a href="#about"><span class="zh">关于我们</span><span class="en">About Us</span></a></li>
-                <li><a href="#contact"><span class="zh">联系我们</span><span class="en">Contact</span></a></li>
-                <li><button class="lang-switch" id="langBtn">EN</button></li>
-            </ul>
-            <div class="mobile-btn" id="menuBtn"><i class="fas fa-bars"></i></div>
+<body id="top">
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="纯享 CHUNXIANG">
+      <svg viewBox="0 0 32 32" width="30" height="30" fill="none" aria-hidden="true">
+        <circle cx="16" cy="16" r="9.2" stroke="#b08d57" stroke-width="1.1" opacity=".7"/>
+        <circle cx="16" cy="6.6" r="3.3" fill="#7a3324"/>
+        <circle cx="24.1" cy="11.3" r="3.3" fill="#8a3b2a"/>
+        <circle cx="24.1" cy="20.7" r="3.3" fill="#7a3324"/>
+        <circle cx="16" cy="25.4" r="3.3" fill="#8a3b2a"/>
+        <circle cx="7.9" cy="20.7" r="3.3" fill="#7a3324"/>
+        <circle cx="7.9" cy="11.3" r="3.3" fill="#8a3b2a"/>
+      </svg>
+      <span>
+        <b>纯享</b>
+        <em>CHUNXIANG</em>
+      </span>
+    </a>
+
+    <nav class="menu">
+      <a href="#products" data-zh="臻品系列" data-en="Collection">臻品系列</a>
+      <a href="#craft" data-zh="匠心工艺" data-en="Craft">匠心工艺</a>
+      <a href="#story" data-zh="品牌故事" data-en="Story">品牌故事</a>
+      <a href="#contact" data-zh="联系我们" data-en="Contact">联系我们</a>
+    </nav>
+
+    <div class="lang" role="group" aria-label="Language">
+      <button class="lang-btn active" data-lang="zh">中文</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <span class="eyebrow" data-zh="苏州 · 手作" data-en="Suzhou · Handmade">苏州 · 手作</span>
+      <h1>
+        <span data-zh="一串一世界" data-en="One Bracelet,">一串一世界</span><br>
+        <span class="accent" data-zh="一念一清净" data-en="One Peaceful Mind">一念一清净</span>
+      </h1>
+      <p class="hero-sub"
+         data-zh="精选天然材质，于苏州手工穿制。以东方美学，串起腕间的温度与日常。"
+         data-en="Natural materials, handcrafted in Suzhou. Oriental aesthetics, strung into your everyday.">
+        精选天然材质，于苏州手工穿制。以东方美学，串起腕间的温度与日常。
+      </p>
+      <p class="hero-en">Selected stones · Hand-knotted · One of a kind</p>
+
+      <div class="hero-actions">
+        <a class="btn" href="#products" data-zh="探索臻品系列" data-en="Explore Collection">探索臻品系列</a>
+        <a class="btn ghost" href="#craft" data-zh="了解匠心工艺" data-en="Our Craft">了解匠心工艺</a>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <div class="art-box" data-beads="hero" data-big="1"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<div class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat">
+      <b>10<small style="font-size:16px;">年</small></b>
+      <span data-zh="匠心传承" data-en="Years of Craft">匠心传承</span>
+    </div>
+    <div class="stat">
+      <b>60<small style="font-size:16px;">+</small></b>
+      <span data-zh="臻品款式" data-en="Curated Styles">臻品款式</span>
+    </div>
+    <div class="stat">
+      <b>100,000<small style="font-size:16px;">+</small></b>
+      <span data-zh="位用户的信赖" data-en="Happy Customers">位用户的信赖</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PRODUCTS ================= -->
+<section id="products">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Collection</div>
+      <h2 data-zh="臻品系列" data-en="Our Collection">臻品系列</h2>
+      <p data-zh="每一颗珠子都经过人工挑选，纹理、色泽、密度，只为与你相遇。"
+         data-en="Every bead is hand-selected for grain, colour and density — until it finds you.">
+        每一颗珠子都经过人工挑选，纹理、色泽、密度，只为与你相遇。
+      </p>
+    </div>
+
+    <div class="products">
+
+      <article class="card reveal">
+        <div class="card-art" data-beads="sandalwood"></div>
+        <h3 data-zh="小叶紫檀 · 静心" data-en="Red Sandalwood · Serenity">小叶紫檀 · 静心</h3>
+        <p class="desc"
+           data-zh="印度小叶紫檀老料，油性足、密度高，久戴生包浆，温润如琥珀。"
+           data-en="Old-growth Indian rosewood — dense and richly oiled. Its patina deepens with every wear.">
+          印度小叶紫檀老料，油性足、密度高，久戴生包浆，温润如琥珀。
+        </p>
+        <div class="card-foot">
+          <span class="price">¥398</span>
+          <button class="btn-mini" data-zh="加入购物车" data-en="Add to Cart">加入购物车</button>
         </div>
-    </header>
+      </article>
 
-    <!-- Banner -->
-    <section class="banner" id="home">
-        <div class="container banner-text">
-            <h1>
-                <span class="zh">甄选天然精品手串</span>
-                <span class="en">Premium Natural Bracelets</span>
-            </h1>
-            <p>
-                <span class="zh">苏州纯享智能科技有限公司｜沉香·檀香·菩提·和田玉·玛瑙·水晶，匠心甄选每一件文玩好物</span>
-                <span class="en">Suzhou Chunxiang Intelligent Technology Co., Ltd. | Agarwood, Sandalwood, Bodhi, Hetian Jade, Agate & Crystal Handcrafted Bracelets</span>
-            </p>
-            <a href="#product" class="btn">
-                <span class="zh">浏览产品</span>
-                <span class="en">View Products</span>
-            </a>
+      <article class="card reveal">
+        <div class="card-art" data-beads="jade"></div>
+        <h3 data-zh="和田玉 · 温润" data-en="Hetian Jade · Warmth">和田玉 · 温润</h3>
+        <p class="desc"
+           data-zh="新疆和田玉籽料，玉质细腻，白中带青，触手生温，君子之选。"
+           data-en="Hetian jade pebbles from Xinjiang — fine-grained, softly green-white, warm to the touch.">
+          新疆和田玉籽料，玉质细腻，白中带青，触手生温，君子之选。
+        </p>
+        <div class="card-foot">
+          <span class="price">¥698</span>
+          <button class="btn-mini" data-zh="加入购物车" data-en="Add to Cart">加入购物车</button>
         </div>
-    </section>
+      </article>
 
-    <!-- 产品展示 -->
-    <section id="product">
-        <div class="container">
-            <div class="sec-title">
-                <h2>
-                    <span class="zh">精品手串系列</span>
-                    <span class="en">Bracelet Collection</span>
-                </h2>
-                <p>
-                    <span class="zh">多种材质手串，手工打磨，天然原料，适合佩戴、收藏与礼品馈赠</span>
-                    <span class="en">Hand-polished natural beads. Ideal for daily wear, collection & gift.</span>
-                </p>
-            </div>
-            <div class="product-list">
-                <!-- 沉香手串 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="https://picsum.photos/id/1025/600/400" alt="沉香手串">
-                    </div>
-                    <div class="product-info">
-                        <h3><span class="zh">天然沉香手串</span><span class="en">Agarwood Bracelet</span></h3>
-                        <p class="desc">
-                            <span class="zh">老料沉香，油脂饱满，香气醇厚，收藏佩戴佳品</span>
-                            <span class="en">High oil content, rich aroma, great for collection & wear</span>
-                        </p>
-                        <p class="price"><span class="zh">¥1680.00</span><span class="en">$233.33 USD</span></p>
-                    </div>
-                </div>
-                <!-- 星月菩提 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="https://picsum.photos/id/1035/600/400" alt="星月菩提手串">
-                    </div>
-                    <div class="product-info">
-                        <h3><span class="zh">星月菩提手串</span><span class="en">Star Moon Bodhi Bracelet</span></h3>
-                        <p class="desc">
-                            <span class="zh">高密顺白，精修孔道，适合盘玩包浆</span>
-                            <span class="en">High density, well polished, nice patina after hand rubbing</span>
-                        </p>
-                        <p class="price"><span class="zh">¥299.00</span><span class="en">$41.53 USD</span></p>
-                    </div>
-                </div>
-                <!-- 和田玉晴水 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="https://picsum.photos/id/1036/600/400" alt="和田玉晴水手串">
-                    </div>
-                    <div class="product-info">
-                        <h3><span class="zh">和田玉晴水手串</span><span class="en">Hetian Jade Bracelet</span></h3>
-                        <p class="desc">
-                            <span class="zh">青海料晴水，冰润通透，圆润珠型</span>
-                            <span class="en">Clear watery green jade, smooth round beads</span>
-                        </p>
-                        <p class="price"><span class="zh">¥1250.00</span><span class="en">$173.61 USD</span></p>
-                    </div>
-                </div>
-                <!-- 南红玛瑙 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="https://picsum.photos/id/1039/600/400" alt="南红玛瑙手串">
-                    </div>
-                    <div class="product-info">
-                        <h3><span class="zh">南红玛瑙手串</span><span class="en">South Red Agate Bracelet</span></h3>
-                        <p class="desc">
-                            <span class="zh">四川凉山料，色泽红艳，满肉质感</span>
-                            <span class="en">Liangshan origin, vivid red color, full texture</span>
-                        </p>
-                        <p class="price"><span class="zh">¥860.00</span><span class="en">$119.44 USD</span></p>
-                    </div>
-                </div>
-                <!-- 老山檀香 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="https://picsum.photos/id/1040/600/400" alt="老山檀香手串">
-                    </div>
-                    <div class="product-info">
-                        <h3><span class="zh">老山檀香手串</span><span class="en">Old Sandalwood Bracelet</span></h3>
-                        <p class="desc">
-                            <span class="zh">印度老山檀，奶香醇厚，纹理细腻</span>
-                            <span class="en">Indian old sandalwood, creamy fragrance, fine grain</span>
-                        </p>
-                        <p class="price"><span class="zh">¥980.00</span><span class="en">$136.11 USD</span></p>
-                    </div>
-                </div>
-                <!-- 紫水晶 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="https://picsum.photos/id/1042/600/400" alt="紫水晶手串">
-                    </div>
-                    <div class="product-info">
-                        <h3><span class="zh">天然紫水晶手串</span><span class="en">Amethyst Bracelet</span></h3>
-                        <p class="desc">
-                            <span class="zh">巴西紫晶，晶体通透，简约百搭</span>
-                            <span class="en">Brazil amethyst, clear crystal, simple & versatile</span>
-                        </p>
-                        <p class="price"><span class="zh">¥199.00</span><span class="en">$27.64 USD</span></p>
-                    </div>
-                </div>
-            </div>
+      <article class="card reveal">
+        <div class="card-art" data-beads="amethyst"></div>
+        <h3 data-zh="紫水晶 · 智慧" data-en="Amethyst · Wisdom">紫水晶 · 智慧</h3>
+        <p class="desc"
+           data-zh="乌拉圭深紫水晶，色浓通透，切面折射柔和光芒，静心安神。"
+           data-en="Deep purple amethyst from Uruguay, faceted to catch a soft inner glow.">
+          乌拉圭深紫水晶，色浓通透，切面折射柔和光芒，静心安神。
+        </p>
+        <div class="card-foot">
+          <span class="price">¥328</span>
+          <button class="btn-mini" data-zh="加入购物车" data-en="Add to Cart">加入购物车</button>
         </div>
-    </section>
+      </article>
 
-    <!-- 关于我们 -->
-    <section id="about" style="background:#fff;">
-        <div class="container">
-            <div class="sec-title">
-                <h2>
-                    <span class="zh">关于我们</span>
-                    <span class="en">About Us</span>
-                </h2>
-                <p>
-                    <span class="zh">苏州纯享智能科技有限公司，立足苏州，甄选全球天然珠材，专注精品手串供应链</span>
-                    <span class="en">Suzhou Chunxiang Intelligent Technology Co., Ltd. Sourcing natural beads globally, professional bracelet supplier.</span>
-                </p>
-            </div>
-            <div class="about-wrap">
-                <div class="about-img">
-                    <img src="https://picsum.photos/id/1060/800/600" alt="手串工艺实拍">
-                </div>
-                <div class="about-text">
-                    <h3>苏州纯享智能科技有限公司<br><span style="font-size:18px">Suzhou Chunxiang Intelligent Technology Co., Ltd.</span></h3>
-                    <p>
-                        <span class="zh">公司坐落于苏州，依托本地工艺资源，主营各类天然手串：沉香、檀香、菩提、和田玉、玛瑙、水晶、木质文玩等。</span>
-                        <span class="en">Located in Suzhou, we supply natural bracelets including agarwood, sandalwood, bodhi, hetian jade, agate, crystal and wooden crafts.</span>
-                    </p>
-                    <p>
-                        <span class="zh">我们坚持严选原料，手工打磨，兼顾线上零售、批发、礼品定制。支持一件代发、企业礼品定制，为客户提供稳定优质的手串产品。</span>
-                        <span class="en">Strict raw material selection & hand polishing. We provide retail, wholesale & custom corporate gifts, dropshipping available.</span>
-                    </p>
-                    <p>
-                        <span class="zh">秉承“纯于本心，享于好物”理念，每一串都经过筛选质检，拒绝劣质仿品。</span>
-                        <span class="en">We adhere to "Pure Heart, Enjoy Fine Goods". All items inspected, no poor counterfeits.</span>
-                    </p>
-                </div>
-            </div>
+      <article class="card reveal">
+        <div class="card-art" data-beads="bodhi"></div>
+        <h3 data-zh="星月菩提 · 修持" data-en="Bodhi Seed · Mindfulness">星月菩提 · 修持</h3>
+        <p class="desc"
+           data-zh="海南元宝籽星月菩提，密度均匀，盘玩月余即见润泽，日日相伴。"
+           data-en="Hainan bodhi seeds of even density — they grow lustrous after weeks of handling.">
+          海南元宝籽星月菩提，密度均匀，盘玩月余即见润泽，日日相伴。
+        </p>
+        <div class="card-foot">
+          <span class="price">¥268</span>
+          <button class="btn-mini" data-zh="加入购物车" data-en="Add to Cart">加入购物车</button>
         </div>
-    </section>
+      </article>
 
-    <!-- 联系我们 -->
-    <section id="contact">
-        <div class="container">
-            <div class="sec-title">
-                <h2>
-                    <span class="zh">联系我们</span>
-                    <span class="en">Contact Us</span>
-                </h2>
-                <p>
-                    <span class="zh">欢迎咨询产品、批发、礼品定制合作</span>
-                    <span class="en">Welcome for product inquiry, wholesale & custom gift cooperation</span>
-                </p>
-            </div>
-            <div class="contact-wrap">
-                <div class="contact-info">
-                    <p><i class="fas fa-building"></i>
-                        <span class="zh">公司：苏州纯享智能科技有限公司</span>
-                        <span class="en">Company: Suzhou Chunxiang Intelligent Technology Co., Ltd.</span>
-                    </p>
-                    <p><i class="fas fa-map-marker-alt"></i>
-                        <span class="zh">地址：江苏省苏州市</span>
-                        <span class="en">Address: Suzhou City, Jiangsu Province, China</span>
-                    </p>
-                    <p><i class="fas fa-phone"></i>
-                        <span class="zh">电话：138-0000-0000</span>
-                        <span class="en">Tel: +86 138-0000-0000</span>
-                    </p>
-                    <p><i class="fas fa-envelope"></i>邮箱：contact@chunxiang-tech.com</p>
-                    <p><i class="fas fa-weixin"></i>微信：chunxiang2026</p>
-                </div>
-                <!-- 表单 -->
-                <form action="https://formsubmit.co/contact@chunxiang-tech.com" method="POST">
-                    <input type="hidden" name="_subject" value="手串独立站新客户留言">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
-
-                    <div class="form-item">
-                        <input type="text" name="name" required placeholder="Your Name / 您的姓名">
-                    </div>
-                    <div class="form-item">
-                        <input type="tel" name="phone" required placeholder="Phone / 联系电话">
-                    </div>
-                    <div class="form-item">
-                        <textarea name="message" required placeholder="Message (Inquiry / Wholesale / Custom Order) 留言内容（产品咨询/批发合作/定制）"></textarea>
-                    </div>
-                    <button type="submit" class="btn">
-                        <span class="zh">提交留言</span>
-                        <span class="en">Submit</span>
-                    </button>
-                    <div class="success-tip">
-                        <span class="zh">提交成功，我们会尽快联系您！</span>
-                        <span class="en">Submitted successfully, we will contact you soon!</span>
-                    </div>
-                </form>
-            </div>
+      <article class="card reveal">
+        <div class="card-art" data-beads="obsidian"></div>
+        <h3 data-zh="黑曜石 · 守护" data-en="Obsidian · Guardian">黑曜石 · 守护</h3>
+        <p class="desc"
+           data-zh="冰种黑曜石，强光下隐现彩虹光泽，沉稳内敛，不事张扬。"
+           data-en="Ice obsidian that reveals faint rainbow hues under strong light. Quiet, composed.">
+          冰种黑曜石，强光下隐现彩虹光泽，沉稳内敛，不事张扬。
+        </p>
+        <div class="card-foot">
+          <span class="price">¥288</span>
+          <button class="btn-mini" data-zh="加入购物车" data-en="Add to Cart">加入购物车</button>
         </div>
-    </section>
+      </article>
 
-    <!-- 页脚 -->
-    <footer>
-        <div class="container footer-wrap">
-            <div class="footer-col">
-                <h4>苏州纯享智能科技有限公司</h4>
-                <p>
-                    <span class="zh">专注天然精品手串，零售、批发、企业礼品定制服务</span>
-                    <span class="en">Premium natural bracelets, retail, wholesale & custom corporate gifts</span>
-                </p>
-            </div>
-            <div class="footer-col">
-                <h4><span class="zh">产品分类</span><span class="en">Products</span></h4>
-                <p>
-                    <span class="zh">沉香手串｜檀香手串<br>菩提手串｜和田玉手串<br>玛瑙南红｜水晶宝石</span>
-                    <span class="en">Agarwood｜Sandalwood<br>Bodhi｜Hetian Jade<br>Agate｜Crystal</span>
-                </p>
-            </div>
-            <div class="footer-col">
-                <h4><span class="zh">快速链接</span><span class="en">Quick Links</span></h4>
-                <p>
-                    <a href="#home"><span class="zh">首页</span><span class="en">主页</span></a><br>
-                    <a href="#product"><span class="zh">产品</span><span class="en">Products</span></a><br>
-                    <a href="#about"><span class="zh">关于我们</span><span class="en">About Us</span></a><br>
-                    <a href="#contact"><span class="zh">联系我们</span><span class="en">Contact</span></a>
-                </p>
-            </div>
+      <article class="card reveal">
+        <div class="card-art" data-beads="agate"></div>
+        <h3 data-zh="南红玛瑙 · 吉祥" data-en="South Red Agate · Fortune">南红玛瑙 · 吉祥</h3>
+        <p class="desc"
+           data-zh="四川凉山南红玛瑙，柿子红成色，胶质饱满，喜庆而庄重。"
+           data-en="Liangshan south-red agate in a persimmon tone — full, translucent and auspicious.">
+          四川凉山南红玛瑙，柿子红成色，胶质饱满，喜庆而庄重。
+        </p>
+        <div class="card-foot">
+          <span class="price">¥528</span>
+          <button class="btn-mini" data-zh="加入购物车" data-en="Add to Cart">加入购物车</button>
         </div>
-        <div class="container copyright">
-            © 2026 Suzhou Chunxiang Intelligent Technology Co., Ltd. <span class="zh">版权所有</span><span class="en">All Rights Reserved</span>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= CRAFT ================= -->
+<section class="craft" id="craft">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Craftsmanship</div>
+      <h2 data-zh="匠心工艺" data-en="Our Craft">匠心工艺</h2>
+      <p data-zh="从选料到成串，每一步都慢下来，只为腕间那一份妥帖。"
+         data-en="From sourcing to knotting, every step is taken slowly — for the perfect fit on your wrist.">
+        从选料到成串，每一步都慢下来，只为腕间那一份妥帖。
+      </p>
+    </div>
+
+    <div class="features">
+      <div class="feature reveal">
+        <div class="ico">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
-    </footer>
+        <h4 data-zh="天然选材" data-en="Natural Materials">天然选材</h4>
+        <p data-zh="只选用天然原石与实木，颗颗人工筛选，拒绝染色处理。"
+           data-en="Only natural stone and wood, hand-sorted bead by bead. Never dyed.">
+          只选用天然原石与实木，颗颗人工筛选，拒绝染色处理。
+        </p>
+      </div>
 
-    <script>
-        // 语言切换
-        let langCN = true;
-        const langBtn = document.getElementById("langBtn");
-        const zhTexts = document.querySelectorAll(".zh");
-        const enTexts = document.querySelectorAll(".en");
+      <div class="feature reveal">
+        <div class="ico">
+          <svg viewBox="0 0 24 24"><circle cx="7" cy="12" r="3"/><circle cx="17" cy="12" r="3"/><path d="M10 12h4"/></svg>
+        </div>
+        <h4 data-zh="手工穿制" data-en="Hand-Knotted">手工穿制</h4>
+        <p data-zh="苏州师傅手工穿线打结，弹力绳双股加固，牢固耐用。"
+           data-en="Hand-strung and knotted by Suzhou artisans with double-stranded elastic cord.">
+          苏州师傅手工穿线打结，弹力绳双股加固，牢固耐用。
+        </p>
+      </div>
 
-        langBtn.addEventListener("click", function(){
-            langCN = !langCN;
-            if(langCN){
-                zhTexts.forEach(item=>item.style.display="block");
-                enTexts.forEach(item=>item.style.display="none");
-                document.documentElement.lang="zh-CN";
-                langBtn.innerText = "EN";
-            }else{
-                zhTexts.forEach(item=>item.style.display="none");
-                enTexts.forEach(item=>item.style.display="block");
-                langBtn.innerText = "中文";
-            }
-        })
+      <div class="feature reveal">
+        <div class="ico">
+          <svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h4 data-zh="一物一证" data-en="Certified">一物一证</h4>
+        <p data-zh="每串附独立材质证书与编号，可溯源，收藏有据。"
+           data-en="Each bracelet ships with its own numbered material certificate.">
+          每串附独立材质证书与编号，可溯源，收藏有据。
+        </p>
+      </div>
 
-        // 移动端菜单切换
-        const menuBtn = document.getElementById('menuBtn');
-        const navMenu = document.getElementById('navMenu');
-        menuBtn.addEventListener('click',()=>{
-            navMenu.classList.toggle('active');
-        })
-        // 滚动导航变色
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll',()=>{
-            if(window.scrollY>50){
-                navbar.style.background="rgba(0,0,0,0.9)";
-            }else{
-                navbar.style.background="rgba(0,0,0,0.7)";
-            }
-        })
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-            anchor.addEventListener('click',function(e){
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
-                navMenu.classList.remove('active');
-            })
-        })
-    </script>
+      <div class="feature reveal">
+        <div class="ico">
+          <svg viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/></svg>
+        </div>
+        <h4 data-zh="顺丰包邮" data-en="Free Shipping">顺丰包邮</h4>
+        <p data-zh="全国顺丰包邮，精美礼盒包装，七天无理由退换。"
+           data-en="Free express shipping nationwide, gift-boxed, with 7-day easy returns.">
+          全国顺丰包邮，精美礼盒包装，七天无理由退换。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STORY ================= -->
+<section id="story">
+  <div class="wrap story-grid">
+    <div class="story-art reveal" data-beads="jade" style="aspect-ratio:1/1;display:flex;align-items:center;"></div>
+
+    <div class="story-text reveal">
+      <div class="kicker" style="font-size:12px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;">Our Story</div>
+      <h2 style="margin-top:14px;" data-zh="在苏州，把时间串成珠子" data-en="In Suzhou, We String Time Into Beads">在苏州，把时间串成珠子</h2>
+
+      <p class="lead"
+         data-zh="苏州纯享智能科技有限公司，根植于江南水乡。我们相信，手串不只是饰品，更是一种与自己相处的方式。">
+        苏州纯享智能科技有限公司，根植于江南水乡。我们相信，手串不只是饰品，更是一种与自己相处的方式。
+      </p>
+      <p class="lead"
+         data-zh="从选料、打磨到穿线打结，每一串都由经验丰富的手艺人完成。我们坚持不催不赶，让天然材质的纹理，在腕间慢慢醒来。">
+        从选料、打磨到穿线打结，每一串都由经验丰富的手艺人完成。我们坚持不催不赶，让天然材质的纹理，在腕间慢慢醒来。
+      </p>
+
+      <ul class="story-list">
+        <li data-zh="源头直采，与矿区、林场长期合作" data-en="Direct sourcing from mines and forest farms">源头直采，与矿区、林场长期合作</li>
+        <li data-zh="每颗珠子手工挑选，拒绝以次充好" data-en="Every bead hand-picked, no substitutes">每颗珠子手工挑选，拒绝以次充好</li>
+        <li data-zh="支持定制尺寸与刻字，独一无二" data-en="Custom sizing and engraving available">支持定制尺寸与刻字，独一无二</li>
+      </ul>
+
+      <div class="hero-actions" style="margin-top:36px;">
+        <a class="btn ghost" href="#contact" data-zh="联系我们" data-en="Contact Us">联系我们</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Reviews</div>
+      <h2 data-zh="他们这样说" data-en="What They Say">他们这样说</h2>
+    </div>
+
+    <div class="reviews">
+      <div class="review reveal">
+        <div class="stars">★★★★★</div>
+        <p data-zh="珠子油润饱满，包装很有质感，自戴送人都很合适。"
+           data-en="Beautifully polished beads and premium packaging — perfect as a gift.">
+          珠子油润饱满，包装很有质感，自戴送人都很合适。
+        </p>
+        <div class="who" data-zh="王女士 · 苏州" data-en="Ms. Wang · Suzhou">王女士 · 苏州</div>
+      </div>
+
+      <div class="review reveal">
+        <div class="stars">★★★★★</div>
+        <p data-zh="客服很耐心，帮我调整了尺寸，戴上刚刚好。"
+           data-en="Patient support helped me resize it — the fit is perfect.">
+          客服很耐心，帮我调整了尺寸，戴上刚刚好。
+        </p>
+        <div class="who" data-zh="李先生 · 上海" data-en="Mr. Li · Shanghai">李先生 · 上海</div>
+      </div>
+
+      <div class="review reveal">
+        <div class="stars">★★★★★</div>
+        <p data-zh="已经回购第三次了，盘了半年，包浆特别漂亮。"
+           data-en="My third order. After six months the patina is gorgeous.">
+          已经回购第三次了，盘了半年，包浆特别漂亮。
+        </p>
+        <div class="who" data-zh="张女士 · 杭州" data-en="Ms. Zhang · Hangzhou">张女士 · 杭州</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta-sec" style="padding-top:88px;">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2 data-zh="把一份温润，戴在腕间" data-en="Wear a Little Warmth on Your Wrist">把一份温润，戴在腕间</h2>
+      <p data-zh="现在下单，享顺丰包邮与七天无理由退换"
+         data-en="Free express shipping and 7-day returns on every order">
+        现在下单，享顺丰包邮与七天无理由退换
+      </p>
+      <a class="btn light" href="#products" data-zh="浏览全部手串" data-en="Browse All Bracelets">浏览全部手串</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">纯享 CHUNXIANG</div>
+        <div class="brand-en">SUZHOU CHUNXIANG</div>
+        <p class="slogan"
+           data-zh="一串一世界，一念一清净。精选天然材质，苏州手工穿制。"
+           data-en="One bracelet, one world. Natural materials, handcrafted in Suzhou.">
+          一串一世界，一念一清净。精选天然材质，苏州手工穿制。
+        </p>
+      </div>
+
+      <div>
+        <h4 data-zh="联系我们" data-en="Contact">联系我们</h4>
+        <ul>
+          <li>hello@chunxiang.com</li>
+          <li>+86 512-6688-8888</li>
+          <li data-zh="江苏省苏州市工业园区星湖街 88 号"
+              data-en="No. 88 Xinghu Street, SIP, Suzhou, Jiangsu, China">
+            江苏省苏州市工业园区星湖街 88 号
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 data-zh="快捷入口" data-en="Quick Links">快捷入口</h4>
+        <ul>
+          <li><a href="#products" data-zh="臻品系列" data-en="Collection">臻品系列</a></li>
+          <li><a href="#craft" data-zh="匠心工艺" data-en="Craft">匠心工艺</a></li>
+          <li><a href="#story" data-zh="品牌故事" data-en="Story">品牌故事</a></li>
+          <li><a href="#top" data-zh="返回顶部" data-en="Back to Top">返回顶部</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-line">
+      <div>
+        © 2025 苏州纯享智能科技有限公司 版权所有<br>
+        Suzhou Chuxiang Intelligent Technology Co., Ltd. All Rights Reserved.
+      </div>
+      <div>苏ICP备00000000号</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   1. 手串 SVG 生成器  Bracelet SVG Generator
+   ========================================================= */
+const PALETTES = {
+  sandalwood:{light:'#c07052',base:'#7a3324',dark:'#38130b',bg:'#f8ece7'},
+  jade      :{light:'#f6faf4',base:'#c3d6c2',dark:'#7d9b80',bg:'#eef4ee'},
+  amethyst  :{light:'#ddcdf3',base:'#9a7bc4',dark:'#4d3873',bg:'#f2ecf9'},
+  bodhi     :{light:'#f8ecd4',base:'#d6b884',dark:'#8c703d',bg:'#f9f3e7'},
+  obsidian  :{light:'#767685',base:'#33323c',dark:'#0d0d13',bg:'#efeff3'},
+  agate     :{light:'#f4aca4',base:'#c8504f',dark:'#731f1e',bg:'#fceceb'},
+  hero      :{light:'#c07052',base:'#7a3324',dark:'#38130b',bg:'#f8ece7'}
+};
+
+let __uid = 0;
+
+function braceletSVG(key, opt = {}) {
+  const p      = PALETTES[key] || PALETTES.hero;
+  const R      = opt.R || 76;          // 珠串半径
+  const count  = opt.count || 14;      // 珠子数量
+  const cx = 120, cy = 120;
+  const id = 'b' + (__uid++);
+  const step = (Math.PI * 2) / count;
+  const beadR = (2 * Math.PI * R / count) / 2 * 1.06; // 略微重叠，看起来更紧实
+
+  let beads = '';
+  for (let i = 0; i < count; i++) {
+    const a = i * step - Math.PI / 2;              // 从正上方开始
+    const x = cx + Math.cos(a) * R;
+    const y = cy + Math.sin(a) * R;
+    const isGuru = (i === 0);                      // 顶部“佛头”珠
+    const r = isGuru ? beadR * 1.16 : beadR;
+    const fill = isGuru ? `url(#${id}-gold)` : `url(#${id}-main)`;
+
+    beads += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" fill="${fill}"/>`;
+    // 高光
+    beads += `<circle cx="${(x - r * 0.34).toFixed(1)}" cy="${(y - r * 0.38).toFixed(1)}"
+                r="${(r * 0.30).toFixed(1)}" fill="#ffffff" opacity="${isGuru ? 0.55 : 0.38}"/>`;
+  }
+
+  return `<svg viewBox="0 0 240 240" width="100%" height="100%" role="img" aria-label="${key} bracelet">
+    <defs>
+      <radialGradient id="${id}-main" cx="34%" cy="28%" r="80%">
+        <stop offset="0%"   stop-color="${p.light}"/>
+        <stop offset="48%"  stop-color="${p.base}"/>
+        <stop offset="100%" stop-color="${p.dark}"/>
+      </radialGradient>
+      <radialGradient id="${id}-gold" cx="34%" cy="28%" r="80%">
+        <stop offset="0%"   stop-color="#f7e4b8"/>
+        <stop offset="50%"  stop-color="#c9a25f"/>
+        <stop offset="100%" stop-color="#87672c"/>
+      </radialGradient>
+      <filter id="${id}-sh" x="-35%" y="-35%" width="170%" height="170%">
+        <feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#3a2a18" flood-opacity="0.20"/>
+      </filter>
+    </defs>
+    <g filter="url(#${id}-sh)">${beads}</g>
+  </svg>`;
+}
+
+/* 注入所有手串图 */
+document.querySelectorAll('[data-beads]').forEach(el => {
+  const key = el.dataset.beads;
+  const big = el.dataset.big === '1';
+  const p = PALETTES[key] || PALETTES.hero;
+
+  el.innerHTML = braceletSVG(key, { R: big ? 84 : 76, count: big ? 16 : 14 });
+
+  // 已有背景的（如 story-art）不覆盖
+  if (!el.classList.contains('story-art')) {
+    el.style.background = `radial-gradient(circle at 50% 38%, ${p.bg} 0%, #ffffff 78%)`;
+    el.style.border = '1px solid #f0e8db';
+  } else {
+    el.style.background = `linear-gradient(150deg, ${p.bg}, #ffffff)`;
+    el.style.border = '1px solid #ece2d3';
+    el.style.padding = '30px';
+    el.style.borderRadius = '26px';
+  }
+});
+
+/* =========================================================
+   2. 中英双语切换  Language Switch
+   ========================================================= */
+const langButtons = document.querySelectorAll('.lang-btn');
+
+function setLang(lang) {
+  document.querySelectorAll('[data-zh]').forEach(el => {
+    const val = el.dataset[lang];
+    if (val !== undefined && val !== null) el.textContent = val;
+  });
+
+  langButtons.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+
+  document.documentElement.lang = (lang === 'zh') ? 'zh-CN' : 'en';
+  document.title = (lang === 'zh')
+    ? '纯享手串 · 一串一世界 | Chunxiang Bracelets'
+    : 'Chunxiang Bracelets · One Bracelet, One World';
+
+  try { localStorage.setItem('cx-lang', lang); } catch (e) {}
+}
+
+langButtons.forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+});
+
+// 初始化语言（记忆上次选择）
+let savedLang = 'zh';
+try { savedLang = localStorage.getItem('cx-lang') || 'zh'; } catch (e) {}
+if (savedLang === 'en') setLang('en');
+
+/* =========================================================
+   3. 滚动渐显  Scroll Reveal
+   ========================================================= */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = (i % 3) * 0.08 + 's';
+  io.observe(el);
+});
+
+/* =========================================================
+   4. 加入购物车（示例交互）
+   ========================================================= */
+document.querySelectorAll('.btn-mini').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const isEn = document.documentElement.lang === 'en';
+    const original = btn.textContent;
+    btn.textContent = isEn ? '✓ Added' : '✓ 已加入';
+    btn.style.background = '#1c1a17';
+    btn.style.color = '#fff';
+    btn.style.borderColor = '#1c1a17';
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.style.borderColor = '';
+    }, 1400);
+  });
+});
+</script>
+
 </body>
 </html>
