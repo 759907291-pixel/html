@@ -30,8 +30,8 @@
             cursor:pointer;
         }
 
-        /* 首页横幅 内嵌svg背景 */
-        .banner{height:100vh;background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080'%3E%3Crect width='1920' height='1080' fill='%23704824'/%3E%3Ccircle cx='300' cy='500' r='120' fill='%23b88650'/%3E%3Ccircle cx='460' cy='420' r='100' fill='%23a07040'/%3E%3Ccircle cx='600' cy='520' r='110' fill='%23b08048'/%3E%3Ccircle cx='740' cy='440' r='95' fill='%23966838'/%3E%3Ccircle cx='880' cy='510' r='105' fill='%23aa7842'/%3E%3Ccircle cx='1020' cy='430' r='98' fill='%239c703c'/%3E%3Ccircle cx='1160' cy='500' r='112' fill='%23b4824a'/%3E%3Ccircle cx='1300' cy='425' r='92' fill='%238e6434'/%3E%3C/svg%3E") center/cover no-repeat;display:flex;align-items:center;text-align:center;color:#fff;padding-top:70px;}
+        /* 首页横幅 */
+        .banner{height:100vh;background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('https://picsum.photos/id/177/1920/1080') center/cover no-repeat;display:flex;align-items:center;text-align:center;color:#fff;padding-top:70px;}
         .banner-text h1{font-size:48px;margin-bottom:20px;}
         .banner-text p{font-size:20px;margin-bottom:30px;max-width:700px;margin-left:auto;margin-right:auto;}
         .btn{display:inline-block;background:var(--main);color:#fff;padding:14px 32px;border-radius:4px;text-decoration:none;transition:0.3s;border:none;cursor:pointer;font-size:16px;}
@@ -48,7 +48,7 @@
         .product-card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.08);transition:0.3s;}
         .product-card:hover{transform:translateY(-8px);box-shadow:0 8px 20px rgba(0,0,0,0.12);}
         .product-img{height:240px;background:#eee;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-        .product-img svg{width:100%;height:100%;}
+        .product-img img{width:100%;height:100%;object-fit:cover;}
         .product-info{padding:20px;}
         .product-info h3{font-size:18px;margin-bottom:8px;color:var(--dark);}
         .product-info .desc{color:#666;font-size:14px;margin-bottom:10px;}
@@ -57,7 +57,7 @@
         /* 关于我们 */
         .about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
         .about-img{border-radius:8px;overflow:hidden;height:400px;}
-        .about-img svg{width:100%;height:100%;}
+        .about-img img{width:100%;height:100%;object-fit:cover;}
         .about-text h3{font-size:26px;color:var(--main);margin-bottom:20px;}
         .about-text p{margin-bottom:15px;color:#555;}
 
@@ -143,12 +143,7 @@
                 <!-- 沉香手串 -->
                 <div class="product-card">
                     <div class="product-img">
-                        <svg viewBox="0 0 600 400">
-                            <rect width="600" height="400" fill="#603820"/>
-                            <circle cx="300" cy="200" r="120" fill="#8a5430"/>
-                            <circle cx="300" cy="200" r="95" fill="#724424"/>
-                            <text x="300" y="210" text-anchor="middle" fill="#fff" font-size="36">沉香手串</text>
-                        </svg>
+                        <img src="https://picsum.photos/id/1025/600/400" alt="沉香手串">
                     </div>
                     <div class="product-info">
                         <h3><span class="zh">天然沉香手串</span><span class="en">Agarwood Bracelet</span></h3>
@@ -162,12 +157,7 @@
                 <!-- 星月菩提 -->
                 <div class="product-card">
                     <div class="product-img">
-                        <svg viewBox="0 0 600 400">
-                            <rect width="600" height="400" fill="#ece8e0"/>
-                            <circle cx="300" cy="200" r="120" fill="#f4f0e8"/>
-                            <circle cx="300" cy="200" r="95" fill="#e9e3d8"/>
-                            <text x="300" y="210" text-anchor="middle" fill="#333" font-size="36">星月菩提</text>
-                        </svg>
+                        <img src="https://picsum.photos/id/1035/600/400" alt="星月菩提手串">
                     </div>
                     <div class="product-info">
                         <h3><span class="zh">星月菩提手串</span><span class="en">Star Moon Bodhi Bracelet</span></h3>
@@ -181,12 +171,7 @@
                 <!-- 和田玉晴水 -->
                 <div class="product-card">
                     <div class="product-img">
-                        <svg viewBox="0 0 600 400">
-                            <rect width="600" height="400" fill="#b0c8d8"/>
-                            <circle cx="300" cy="200" r="120" fill="#c2d9e6"/>
-                            <circle cx="300" cy="200" r="95" fill="#a8c0d0"/>
-                            <text x="300" y="210" text-anchor="middle" fill="#222" font-size="36">和田玉晴水</text>
-                        </svg>
+                        <img src="https://picsum.photos/id/1036/600/400" alt="和田玉晴水手串">
                     </div>
                     <div class="product-info">
                         <h3><span class="zh">和田玉晴水手串</span><span class="en">Hetian Jade Bracelet</span></h3>
@@ -200,12 +185,7 @@
                 <!-- 南红玛瑙 -->
                 <div class="product-card">
                     <div class="product-img">
-                        <svg viewBox="0 0 600 400">
-                            <rect width="600" height="400" fill="#b82820"/>
-                            <circle cx="300" cy="200" r="120" fill="#d83830"/>
-                            <circle cx="300" cy="200" r="95" fill="#c22e26"/>
-                            <text x="300" y="210" text-anchor="middle" fill="#fff" font-size="36">南红玛瑙</text>
-                        </svg>
+                        <img src="https://picsum.photos/id/1039/600/400" alt="南红玛瑙手串">
                     </div>
                     <div class="product-info">
                         <h3><span class="zh">南红玛瑙手串</span><span class="en">South Red Agate Bracelet</span></h3>
@@ -219,12 +199,7 @@
                 <!-- 老山檀香 -->
                 <div class="product-card">
                     <div class="product-img">
-                        <svg viewBox="0 0 600 400">
-                            <rect width="600" height="400" fill="#a07840"/>
-                            <circle cx="300" cy="200" r="120" fill="#b88c4e"/>
-                            <circle cx="300" cy="200" r="95" fill="#946e38"/>
-                            <text x="300" y="210" text-anchor="middle" fill="#fff" font-size="36">老山檀香</text>
-                        </svg>
+                        <img src="https://picsum.photos/id/1040/600/400" alt="老山檀香手串">
                     </div>
                     <div class="product-info">
                         <h3><span class="zh">老山檀香手串</span><span class="en">Old Sandalwood Bracelet</span></h3>
@@ -238,12 +213,7 @@
                 <!-- 紫水晶 -->
                 <div class="product-card">
                     <div class="product-img">
-                        <svg viewBox="0 0 600 400">
-                            <rect width="600" height="400" fill="#7850a0"/>
-                            <circle cx="300" cy="200" r="120" fill="#9068b8"/>
-                            <circle cx="300" cy="200" r="95" fill="#6c4892"/>
-                            <text x="300" y="210" text-anchor="middle" fill="#fff" font-size="36">紫水晶</text>
-                        </svg>
+                        <img src="https://picsum.photos/id/1042/600/400" alt="紫水晶手串">
                     </div>
                     <div class="product-info">
                         <h3><span class="zh">天然紫水晶手串</span><span class="en">Amethyst Bracelet</span></h3>
@@ -273,12 +243,7 @@
             </div>
             <div class="about-wrap">
                 <div class="about-img">
-                    <svg viewBox="0 0 800 600">
-                        <rect width="800" height="600" fill="#554433"/>
-                        <circle cx="400" cy="300" r="160" fill="#775540"/>
-                        <circle cx="400" cy="300" r="130" fill="#664832"/>
-                        <text x="400" y="310" text-anchor="middle" fill="#fff" font-size="44">手串工艺</text>
-                    </svg>
+                    <img src="https://picsum.photos/id/1060/800/600" alt="手串工艺实拍">
                 </div>
                 <div class="about-text">
                     <h3>苏州纯享智能科技有限公司<br><span style="font-size:18px">Suzhou Chunxiang Intelligent Technology Co., Ltd.</span></h3>
